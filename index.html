@@ -414,7 +414,7 @@ tfoot td{font-weight:500}
 /* Google sign-in gate. The Apps Script bridge checks the Google ID token and its allow-list;
    this page holds no data, keys or passwords. */
 (() => {
-  const API = "PASTE_EXEC_URL", CLIENT_ID = "PASTE_CLIENT_ID";
+  const API = "https://script.google.com/macros/s/AKfycbyWl7BNVaPQLz-x37pQXfJ709OTSrXE9j2tVhskgR7apmbwAqZLfiBzY5L-xfBWlQ5E6w/exec", CLIENT_ID = "481843750461-34398c3mbvg1i18mac0v15jnqj6dm2nb.apps.googleusercontent.com";
   const K = "sqdash.idt";
   const get = () => { try { return JSON.parse(localStorage.getItem(K)) || null; } catch { return null; } };
   const put = v => { try { v ? localStorage.setItem(K, JSON.stringify(v)) : localStorage.removeItem(K); } catch {} };
