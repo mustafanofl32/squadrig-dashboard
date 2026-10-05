@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-18MD88k9udWSFPMuOEreEyb+vOeLDZXAIsv7EP8UJ1w=' 'sha256-s0WxIprxruGkP1Ng0tPgr0QxVWJ6OMz9a47TIAt+wFk=' 'sha256-2MFS3602pNEZd1YOoVxiqKhUQAEpCBPFB48OkAn/NPw=' 'sha256-yQZysTLcfPch8O4xvSvbBLdz65qoOEmhSW1Il4T8FwA=' https://cdn.jsdelivr.net https://accounts.google.com/gsi/client; style-src 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com/gsi/style; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src https://script.google.com https://script.googleusercontent.com https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
@@ -301,7 +302,7 @@ tr.detail > td { background: var(--surface-2); padding: 14px 18px; }
 }
 
 </style>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js" integrity="sha384-pPi0zxBAoDu6+JXW/C68UZLvBUUtU+7zonhif43rqj7pxsGyqyqzcian2Rj37Rss" crossorigin="anonymous" defer></script>
 <script src="https://accounts.google.com/gsi/client" async></script>
 <script>
 /* Google sign-in gate. The Apps Script bridge checks the Google ID token and its allow-list;
@@ -1076,7 +1077,7 @@ function renderAttention() {
   const unpaidD = allOrders().filter(o => unpaid(o) && now - Date.parse(o.t) > 3 * DAY);
   if (unpaidD.length) items.push(it("bad", `${unpaidD.length} طلب متسلّم والدفع لسه معلّق`, `${money(unpaidD.reduce((s, o) => s + o.cur, 0))} ج.م · تأكدوا من التحصيل وعلّموها مدفوعة`, `<button type="button" class="linkish" data-go="orders" data-filter="unpaid">عرض</button>`));
   if (ab7.length) items.push(it("", `${ab7.length} سلّة متروكة هذا الأسبوع بدون تواصل`, `قيمتها ${money(ab7.reduce((s, a) => s + a.tot, 0))} ج.م`, `<button type="button" class="linkish" data-go="customers">عرض</button>`));
-  stale.slice(0, 4).forEach(o => items.push(it(now - Date.parse(o.t) > 7 * DAY ? "bad" : "", `<span class="n">${esc(o.n)}</span> · ${esc(o.cu ? o.cu.nm : "زبون")}`, `معلّق من ${Math.floor((now - Date.parse(o.t)) / DAY)} يوم · ${money(o.cur)} ج.م · ${gateName(o)}`, `<a class="linkish" href="${adminOrder(o.id)}" target="_blank" rel="noopener">افتح ↗</a>`)));
+  stale.slice(0, 4).forEach(o => items.push(it(now - Date.parse(o.t) > 7 * DAY ? "bad" : "", `<span class="n">${esc(o.n)}</span> · ${esc(o.cu ? o.cu.nm : "زبون")}`, `معلّق من ${Math.floor((now - Date.parse(o.t)) / DAY)} يوم · ${money(o.cur)} ج.م · ${esc(gateName(o))}`, `<a class="linkish" href="${adminOrder(o.id)}" target="_blank" rel="noopener">افتح ↗</a>`)));
   if (stale.length > 4) items.push(it("", `و${stale.length - 4} طلبات معلّقة أخرى`, "بانتظار التأكيد أو الشحن", `<button type="button" class="linkish" data-go="orders" data-filter="pending">عرض الكل</button>`));
   setHTML(el, items.length ? `<div class="att">${items.join("")}</div>` : emptyBox("لا يوجد شيء معلّق. كل شي ماشي."));
 }
@@ -1200,7 +1201,7 @@ function renderOrders() {
       <td><div class="cm">${esc(o.cu ? o.cu.nm : "—")}</div><div class="cs">${esc(o.ad ? (o.ad.ci || o.ad.pr) : "")}${o.cu && o.cu.no > 1 ? ` · زبون متكرر (${o.cu.no})` : ""}</div></td>
       <td>${ln.length ? `<div class="prod ltr" style="text-align:start">${esc(ln[0][0])}</div><div class="cs">${units} قطعة${ln.length > 1 ? ` · ${ln.length} منتجات` : ""} · ${condTag(condOf(ln[0][2]))}</div>` : `<div class="cs">المنتجات اتشالت من الطلب</div>`}</td>
       <td class="r nw n">${s === "cancelled" ? `<span style="color:var(--muted);text-decoration:line-through">${money(o.tot)}</span>` : money(o.cur)}${o.cur !== o.tot && s !== "cancelled" ? `<div class="cs">كان ${money(o.tot)}</div>` : ""}</td>
-      <td class="nw">${gateName(o)}</td>
+      <td class="nw">${esc(gateName(o))}</td>
       <td><span class="st ${s}"><i></i>${ST_LABEL[s]}</span><div class="cs" ${unpaid(o) ? 'style="color:var(--warn)"' : ""}>${s === "cancelled" ? (REASON[o.cr] || "") : s === "pending" ? "منذ " + Math.floor((now - Date.parse(o.t)) / DAY) + " يوم" : unpaid(o) ? "الدفع لسه معلّق" : o.fs === "PARTIALLY_REFUNDED" ? "مسترجع جزئياً" : ""}</div></td>
       <td class="nw">${esc(src.n)}${j && j.d != null ? `<div class="cs">قرّر خلال ${j.d} يوم</div>` : ""}</td></tr>
       ${open ? `<tr class="detail"><td colspan="7"><div class="dgrid">
