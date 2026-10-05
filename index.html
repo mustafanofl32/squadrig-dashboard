@@ -1,0 +1,1279 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><meta name="theme-color" content="#0A0C10"><title>لوحة سكواد ريج</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@300;400;500&display=swap">
+<style>
+/* Layout: sticky store bar (brand, freshness, period, theme, tabs) over a 12-col grid; one focal "received sales" panel per overview.
+   Final palette is the editorial override at the end of this sheet (Ramp-style light, Linear-style dark, SquadRig volt highlighter). */
+:root{
+  --void:#F7F8FA; --surface:#FFFFFF; --surface-2:#EFF1F5; --hover:#F4F6FA;
+  --ink:#0A0C10; --ink-2:#3B4352; --muted:#5F6878; --line:rgba(10,12,16,.10); --line-soft:rgba(10,12,16,.06);
+  --accent:#0A7490; --accent-soft:#5FA9BD; --accent-wash:rgba(10,116,144,.09); --accent-line:rgba(10,116,144,.28);
+  --volt:#586F00; --volt-fill:#D3FF3E; --volt-ink:#0A0C10; --signal:#2F6BFF;
+  --good:#15803D; --warn:#B45309; --serious:#C2410C; --bad:#DC2626; --neutral:#7A8394;
+  --grid:#E4E7ED; --axis:#C6CCD6; --shadow:0 1px 2px rgba(10,12,16,.04),0 8px 24px -12px rgba(10,12,16,.10);
+  --f-ui:"IBM Plex Sans Arabic","Segoe UI",Tahoma,system-ui,sans-serif;
+  --f-num:"Inter","IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;
+  --f-disp:"Space Grotesk","Inter","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --r:14px; --r-sm:10px; --ease:cubic-bezier(.22,1,.36,1);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --void:#0A0C10; --surface:#12151C; --surface-2:#191D26; --hover:#1B202B;
+  --ink:#F2F5F9; --ink-2:#C3CAD6; --muted:#9AA4B4; --line:rgba(255,255,255,.09); --line-soft:rgba(255,255,255,.05);
+  --accent:#3DDCFF; --accent-soft:#2A93AD; --accent-wash:rgba(61,220,255,.10); --accent-line:rgba(61,220,255,.30);
+  --volt:#D3FF3E; --volt-fill:#D3FF3E; --volt-ink:#0A0C10; --signal:#5284FF;
+  --good:#3CC46A; --warn:#F5A524; --serious:#EF6C4D; --bad:#FF6B6B; --neutral:#8B96A8;
+  --grid:#20252F; --axis:#373F4D; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6); color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --void:#0A0C10; --surface:#12151C; --surface-2:#191D26; --hover:#1B202B;
+  --ink:#F2F5F9; --ink-2:#C3CAD6; --muted:#9AA4B4; --line:rgba(255,255,255,.09); --line-soft:rgba(255,255,255,.05);
+  --accent:#3DDCFF; --accent-soft:#2A93AD; --accent-wash:rgba(61,220,255,.10); --accent-line:rgba(61,220,255,.30);
+  --volt:#D3FF3E; --volt-fill:#D3FF3E; --volt-ink:#0A0C10; --signal:#5284FF;
+  --good:#3CC46A; --warn:#F5A524; --serious:#EF6C4D; --bad:#FF6B6B; --neutral:#8B96A8;
+  --grid:#20252F; --axis:#373F4D; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--void)}
+body{color:var(--ink);font-family:var(--f-ui);font-size:14px;line-height:1.55;margin:0;transition:background-color .3s var(--ease),color .3s var(--ease)}
+button,input{font:inherit;color:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1360px;margin:0 auto;padding-inline:24px;padding-block:0 56px}
+@media (max-width:560px){.wrap{padding-inline:16px}}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--void) 86%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1360px;margin:0 auto;padding-inline:24px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding-block:14px 0}
+@media (max-width:560px){.top-in{padding-inline:16px}}
+.brand{display:flex;align-items:center;gap:12px;margin-inline-end:auto;min-width:0}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--ink);display:grid;place-items:center;flex:none}
+.mark svg{width:18px;height:18px}
+.brand b{font-family:var(--f-disp);font-size:18px;font-weight:600;letter-spacing:.02em;white-space:nowrap;direction:ltr;display:block}
+.brand b span{color:var(--accent)}
+.brand small{display:block;color:var(--muted);font-size:12px;line-height:1.2}
+.fresh{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:12.5px;white-space:nowrap}
+.fresh i{width:8px;height:8px;border-radius:50%;background:var(--neutral);flex:none;position:relative}
+.fresh.live i{background:var(--good)}
+.fresh.live i::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--good);opacity:0;animation:ping 2.4s var(--ease) infinite}
+.fresh.busy i{background:var(--warn);animation:blink 1s ease-in-out infinite}
+.fresh.old i{background:var(--warn)}
+@keyframes ping{0%{transform:scale(.6);opacity:.6}100%{transform:scale(1.6);opacity:0}}
+@keyframes blink{50%{opacity:.35}}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:3px;max-width:100%;overflow-x:auto;position:relative}
+.seg button{border:0;background:none;padding:5px 12px;border-radius:7px;cursor:pointer;color:var(--ink-2);font-size:13px;white-space:nowrap;position:relative;z-index:1;transition:color .2s}
+.seg button[aria-pressed="true"]{color:var(--void);font-weight:600}
+.seg .pill{position:absolute;top:3px;bottom:3px;border-radius:7px;background:var(--ink);transition:left .35s var(--ease),width .35s var(--ease);z-index:0}
+.icon-btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;width:36px;height:34px;display:grid;place-items:center;cursor:pointer;color:var(--ink-2)}
+.icon-btn:hover{background:var(--hover)}
+.icon-btn svg{width:16px;height:16px}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:6px 12px;cursor:pointer;font-size:13px;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:background .2s,border-color .2s}
+.btn:hover{background:var(--hover);border-color:var(--accent-line)}
+.btn[disabled]{opacity:.55;cursor:default}
+.btn svg{width:14px;height:14px}
+.spin svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tabs{flex-basis:100%;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;position:relative}
+.tabs a{padding:10px 14px 12px;text-decoration:none;color:var(--muted);font-weight:500;white-space:nowrap;transition:color .2s}
+.tabs a:hover,.tabs a[aria-current="page"]{color:var(--ink)}
+.tabs .count{font-family:var(--f-num);font-size:11px;color:var(--muted);margin-inline-start:6px;background:var(--surface-2);border-radius:6px;padding:1px 6px}
+.tabs .count:empty{display:none}
+.tabs .bar{position:absolute;bottom:0;height:2px;background:var(--accent);border-radius:2px;transition:left .4s var(--ease),width .4s var(--ease)}
+.banner{margin-top:18px;border:1px solid var(--line);border-inline-start:3px solid var(--warn);background:var(--surface);border-radius:var(--r-sm);padding:12px 14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.banner p{margin:0;flex:1 1 280px}
+.banner.bad{border-inline-start-color:var(--bad)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:16px}
+.c12{grid-column:span 12}.c8{grid-column:span 8}.c7{grid-column:span 7}.c6{grid-column:span 6}.c5{grid-column:span 5}.c4{grid-column:span 4}
+@media (max-width:1040px){.c8,.c7,.c6,.c5,.c4{grid-column:span 12}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.ph{display:flex;align-items:center;gap:6px 10px;flex-wrap:wrap;padding:16px 18px 0}
+.ph h2{font-size:14.5px;font-weight:600;margin:0}
+.ph .sub{color:var(--muted);font-size:12.5px}
+.ph .act{margin-inline-start:auto;display:flex;gap:6px;align-items:center}
+.pb{padding:12px 18px 18px;min-width:0;flex:1}
+.note{color:var(--muted);font-size:12.5px;margin:12px 0 0}
+.err{border:1px dashed var(--line);border-radius:var(--r-sm);padding:14px;color:var(--ink-2);font-size:13px}
+.skel{height:14px;border-radius:6px;margin:8px 0;background:linear-gradient(90deg,var(--surface-2) 25%,var(--hover) 50%,var(--surface-2) 75%);background-size:200% 100%;animation:shimmer 1.4s linear infinite}
+.skel.tall{height:190px}
+@keyframes shimmer{to{background-position:-200% 0}}
+.empty{color:var(--muted);font-size:13px;padding:22px 0;text-align:center}
+.mini-seg{display:inline-flex;background:var(--surface-2);border-radius:9px;padding:3px}
+.mini-seg button{border:0;background:none;font-size:12px;padding:5px 12px;border-radius:7px;cursor:pointer;color:var(--muted)}
+.mini-seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.hero .pb{display:flex;flex-direction:column;gap:14px}
+.hero .lab{color:var(--muted);font-size:13px;display:flex;align-items:center;gap:8px}
+.hero .lab i{width:8px;height:8px;border-radius:2px;background:var(--key)}
+.hero .big{font-family:var(--f-disp);font-size:clamp(34px,4vw,46px);font-weight:600;letter-spacing:-.02em;line-height:1;display:flex;gap:10px;align-items:baseline}
+.hero .big small{font-family:var(--f-ui);font-size:15px;color:var(--muted);font-weight:500}
+.hero .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted);min-height:20px}
+.hero .spark-lg{height:84px;direction:ltr}
+.hero .spark-lg svg{width:100%;height:84px;display:block}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border-top:1px solid var(--line-soft);padding-top:14px}
+.trio div{min-width:0}
+.trio span{display:block;color:var(--muted);font-size:12px}
+.trio b{display:block;font-family:var(--f-num);font-weight:600;font-size:17px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));height:100%}
+.kgrid.k4{grid-template-columns:repeat(4,minmax(0,1fr))}.kgrid.k5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.kpi{padding:16px 18px 14px;min-width:0;display:flex;flex-direction:column;border-inline-start:1px solid var(--line-soft);border-top:1px solid var(--line-soft)}
+.kgrid .kpi:nth-child(3n+1){border-inline-start:0}.kgrid .kpi:nth-child(-n+3){border-top:0}
+.kgrid.k4 .kpi,.kgrid.k5 .kpi{border-top:0;border-inline-start:1px solid var(--line-soft)}.kgrid.k4 .kpi:first-child,.kgrid.k5 .kpi:first-child{border-inline-start:0}
+.kpi .k{color:var(--muted);font-size:12.5px}
+.kpi .v{font-family:var(--f-disp);font-size:24px;font-weight:600;letter-spacing:-.01em;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi .v small{font-family:var(--f-ui);font-size:12.5px;color:var(--muted);margin-inline-start:4px;font-weight:400}
+.kpi .d{font-size:12px;color:var(--muted);margin-top:4px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;min-height:18px}
+.kpi svg.spark{display:block;width:100%;height:28px;margin-top:auto;padding-top:8px;direction:ltr}
+@media (max-width:720px){.kgrid,.kgrid.k4,.kgrid.k5{grid-template-columns:repeat(2,minmax(0,1fr))}.kgrid .kpi{border-inline-start:0!important;border-top:1px solid var(--line-soft)!important}.kgrid .kpi:nth-child(-n+2){border-top:0!important}.kgrid .kpi:nth-child(2n){border-inline-start:1px solid var(--line-soft)!important}}
+.delta{font-family:var(--f-num);font-size:11.5px;direction:ltr;unicode-bidi:isolate;padding:1px 6px;border-radius:6px;font-weight:500}
+.delta.up{color:var(--good);background:color-mix(in srgb,var(--good) 12%,transparent)}
+.delta.down{color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent)}
+.delta.flat{color:var(--muted);background:var(--surface-2)}
+.st{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-size:12.5px;color:var(--ink-2)}
+.st i{width:8px;height:8px;border-radius:50%;background:var(--neutral);flex:none}
+.st.delivered i{background:var(--good)}.st.paid i{background:var(--signal)}.st.pending i{background:var(--warn)}.st.cancelled i{background:var(--bad)}.st.refunded i{background:var(--serious)}
+.stack{display:flex;height:10px;gap:3px;margin:6px 0 16px;direction:ltr}
+.stack span{display:block;height:100%;min-width:4px;border-radius:3px;transform-origin:left;animation:growx .9s var(--ease) both}
+@keyframes growx{from{transform:scaleX(0)}}
+.bk{display:grid;grid-template-columns:1fr auto auto;gap:8px 14px;align-items:center;font-size:13px}
+.bk .n{font-family:var(--f-num);text-align:end}
+.bk .m{font-family:var(--f-num);color:var(--muted);text-align:end;font-size:12.5px}
+.bk .hd{color:var(--muted);font-size:11.5px}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}
+.tiles div{background:var(--surface-2);border-radius:var(--r-sm);padding:9px 11px}
+.tiles b{display:block;font-family:var(--f-num);font-weight:600;font-size:16px}
+.tiles span{color:var(--muted);font-size:11.5px}
+.tiles .hot b{color:var(--bad)}
+.tw{overflow-x:auto;margin-inline:-18px;padding-inline:18px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-weight:500;color:var(--muted);font-size:12px;text-align:start;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tfoot td{border-top:1px solid var(--line);border-bottom:0;font-weight:600;background:var(--surface-2)}
+td.r,th.r{text-align:end}
+td.nw{white-space:nowrap}
+.n{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+tbody tr{transition:background .15s}
+tbody tr.row{cursor:pointer}
+tbody tr.row:hover,tbody tr.open{background:var(--hover)}
+.cm{font-weight:500}
+.cs{color:var(--muted);font-size:12px}
+.prod{max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.detail td{background:var(--surface-2);padding:14px 16px}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 24px;font-size:12.5px}
+.dgrid h4{margin:0 0 4px;font-size:12px;color:var(--muted);font-weight:500}
+.dgrid p{margin:0;word-break:break-word}
+.items{margin:0;padding:0;list-style:none}
+.inbar{position:relative}
+.inbar .bar{position:absolute;inset-block:6px;inset-inline-start:0;background:var(--accent-wash);border-radius:4px;pointer-events:none;transform-origin:right;animation:growx .8s var(--ease) both}
+.inbar>span{position:relative}
+.rate.hi{color:var(--bad);font-weight:600}.rate.ok{color:var(--good);font-weight:600}
+.cond{display:inline-flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap}
+.cond i{width:8px;height:8px;border-radius:2px}
+.cond.new i{background:var(--signal)}.cond.ob i{background:var(--volt-fill);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--volt) 50%,transparent)}.cond.used i{background:var(--neutral)}.cond.na i{background:var(--line)}
+.sumbar{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.sumbar div{background:var(--surface-2);border-radius:var(--r-sm);padding:9px 12px;min-width:0}
+.sumbar span{display:block;color:var(--muted);font-size:11.5px}
+.sumbar b{display:block;font-family:var(--f-num);font-weight:600;font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:900px){.sumbar{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:480px){.sumbar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:5px 11px;cursor:pointer;font-size:12.5px;display:inline-flex;gap:7px;align-items:center;transition:border-color .2s,background .2s}
+.chip:hover{background:var(--hover)}
+.chip[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.chip .n{color:var(--muted);font-size:11.5px}
+.search{margin-inline-start:auto;border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:6px 11px;font-size:13px;min-width:0;width:260px;max-width:100%;transition:border-color .2s}
+.search:focus{border-color:var(--accent-line);outline:none;box-shadow:0 0 0 3px var(--accent-wash)}
+.linkish{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font-size:12.5px;text-decoration:underline;text-underline-offset:2px}
+.tick{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.tick input{accent-color:var(--good);width:15px;height:15px}
+.tick.done{color:var(--good)}
+.fun{display:grid;gap:12px}
+.fun .row{display:grid;grid-template-columns:150px 1fr 110px;gap:12px;align-items:center;font-size:13px}
+.fun .track{height:24px;background:var(--surface-2);border-radius:6px;overflow:hidden}
+.fun .fill{height:100%;background:var(--accent);border-radius:6px;transform-origin:right;animation:growx .9s var(--ease) both}
+.fun .val{text-align:end;font-family:var(--f-num);font-size:12.5px}
+.fun .val small{color:var(--muted);display:block;font-size:11.5px}
+@media (max-width:520px){.fun .row{grid-template-columns:96px 1fr 84px;gap:8px}}
+.blist{display:grid;gap:10px}
+.blist .row{display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:10px;align-items:center;font-size:13px}
+.blist .lab{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px}
+.blist .lab span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.blist .track{height:6px;background:var(--surface-2);border-radius:4px;overflow:hidden}
+.blist .fill{height:100%;background:var(--accent);border-radius:4px;transform-origin:right;animation:growx .9s var(--ease) both}
+.blist .val{text-align:end;font-family:var(--f-num);font-size:12.5px}
+.split{display:flex;height:12px;gap:3px;direction:ltr;margin:6px 0 14px}
+.split span{display:block;min-width:3px;border-radius:3px;transform-origin:left;animation:growx .9s var(--ease) both}
+.att .it{display:grid;grid-template-columns:3px minmax(0,1fr) auto;gap:4px 12px;padding:11px 0;border-bottom:1px solid var(--line-soft);font-size:13px;align-items:center}
+.att .it:last-child{border-bottom:0}
+.att .meta{color:var(--muted);font-size:12px}
+.att .flag{width:3px;align-self:stretch;border-radius:2px;background:var(--warn)}
+.att .it.bad .flag{background:var(--bad)}
+.heat{display:grid;grid-template-columns:56px repeat(24,minmax(0,1fr));gap:3px;direction:ltr;font-size:10.5px;min-width:580px}
+.heat .hl{color:var(--muted);font-family:var(--f-num);text-align:center}
+.heat .dl{color:var(--ink-2);font-family:var(--f-ui);font-size:11.5px;text-align:end;padding-inline-end:6px;align-self:center}
+.heat .cell{aspect-ratio:1/1;border-radius:3px;background:var(--surface-2);position:relative}
+.heat .cell b{position:absolute;inset:0;border-radius:3px;background:var(--accent);animation:fade .8s var(--ease) both}
+@keyframes fade{from{opacity:0}}
+.chart{position:relative;direction:ltr;min-height:230px}
+.chart svg{display:block;width:100%;overflow:visible}
+.chart text{fill:var(--muted);font-family:var(--f-num);font-size:10.5px}
+.chart .ar{font-family:var(--f-ui)}
+.chart .grow{transform-box:fill-box;transform-origin:bottom;animation:growy .7s var(--ease) both}
+@keyframes growy{from{transform:scaleY(0)}}
+.draw{stroke-dasharray:1;stroke-dashoffset:0;animation:draw 1.1s var(--ease) both}
+@keyframes draw{from{stroke-dashoffset:1}}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12px;box-shadow:var(--shadow);min-width:160px;direction:rtl;z-index:5;white-space:nowrap;transition:left .12s ease-out}
+.tip .t{font-weight:600;margin-bottom:5px}
+.tip .l{display:flex;justify-content:space-between;gap:18px;line-height:1.7}
+.tip .l span:first-child{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2)}
+.tip .l b{font-family:var(--f-num);font-weight:600}
+.sw{width:9px;height:9px;border-radius:3px;display:inline-block}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.foot{margin-top:32px;color:var(--muted);font-size:12px;display:flex;gap:6px 18px;flex-wrap:wrap}
+.toast{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--void);padding:9px 15px;border-radius:10px;font-size:13px;z-index:50;max-width:calc(100% - 32px);animation:up .3s var(--ease) both}
+@keyframes up{from{opacity:0;transform:translate(-50%,8px)}}
+.enter .panel{animation:rise .6s var(--ease) both;animation-delay:calc(var(--i,0) * 45ms)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+
+/* ===== Editorial finance desk: monochrome pages, hairlines instead of shadows, SquadRig volt (#D3FF3E) as the single highlighter.
+   Light follows Ramp's paper/ink desk; dark follows Linear's midnight instrument. ===== */
+:root{
+  --void:#F6F7F8; --surface:#FFFFFF; --surface-2:#F1F2F4; --hover:#F6F7F8;
+  --ink:#0A0C10; --ink-2:#383C44; --muted:#676C75; --line:#E4E6EA; --line-soft:#EEF0F2;
+  --key:#0A0C10; --series-2:#B7BBC2; --accent:#0A0C10; --accent-wash:rgba(10,12,16,.055); --accent-line:rgba(10,12,16,.22);
+  --volt-fill:#D3FF3E; --volt-ink:#0A0C10; --volt-text:#4D6200; --link:#3F5100;
+  --grid:#EEF0F2; --axis:#D3D6DB; --shadow:none;
+  --band:#0E0F11;
+  --f-num:"Inter","IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;
+  --f-disp:"Inter","IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;
+  --r:16px; --r-sm:12px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --void:#08090A; --surface:#0F1011; --surface-2:#161718; --hover:#141517;
+  --ink:#F7F8F8; --ink-2:#D0D6E0; --muted:#8A8F98; --line:#23252A; --line-soft:#1A1B1E;
+  --key:#D3FF3E; --series-2:#4A4F57; --accent:#D3FF3E; --accent-wash:rgba(211,255,62,.08); --accent-line:rgba(211,255,62,.30);
+  --volt-text:#D3FF3E; --link:#D3FF3E; --grid:#1A1B1E; --axis:#2C2E33; --band:#131416; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --void:#08090A; --surface:#0F1011; --surface-2:#161718; --hover:#141517;
+  --ink:#F7F8F8; --ink-2:#D0D6E0; --muted:#8A8F98; --line:#23252A; --line-soft:#1A1B1E;
+  --key:#D3FF3E; --series-2:#4A4F57; --accent:#D3FF3E; --accent-wash:rgba(211,255,62,.08); --accent-line:rgba(211,255,62,.30);
+  --volt-text:#D3FF3E; --link:#D3FF3E; --grid:#1A1B1E; --axis:#2C2E33; --band:#131416; color-scheme:dark;
+}
+body{font-feature-settings:"ss01","cv11";letter-spacing:-.003em}
+a{color:var(--link)}
+.panel{box-shadow:none;border-color:var(--line)}
+.ph h2{font-weight:500;font-size:14.5px;letter-spacing:-.005em}
+.ph{padding:18px 20px 0}.pb{padding:14px 20px 20px}.tw{margin-inline:-20px;padding-inline:20px}
+.mark{background:var(--volt-fill);border-radius:8px}
+.brand b{font-family:var(--f-num);font-weight:500;letter-spacing:.04em}
+.brand b span{color:var(--muted)}
+.seg{border-radius:10px}
+.seg .pill{background:var(--volt-fill)}
+.seg button[aria-pressed="true"]{color:var(--volt-ink);font-weight:500}
+#reload{background:var(--ink);color:var(--void);border-color:var(--ink)}
+#reload:hover{background:var(--ink-2);border-color:var(--ink-2)}
+.tabs a{font-weight:400}
+.tabs a[aria-current="page"]{font-weight:500}
+.tabs .bar{background:var(--key);height:2px}
+.kpi .v,.hero .big{font-weight:400;letter-spacing:-.025em}
+.kpi .v{font-size:26px}
+.kpi .k,.trio span,.sumbar span,.tiles span{letter-spacing:.01em}
+.trio b,.sumbar b,.tiles b{font-weight:500}
+.delta{border-radius:5px}
+.chip{border-radius:8px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--void);border-color:var(--ink);box-shadow:none}
+.chip[aria-pressed="true"] .n{color:inherit;opacity:.7}
+th{font-weight:400;letter-spacing:.01em}
+tfoot td{font-weight:500}
+.cm{font-weight:500}
+.sumbar div,.tiles div{border-radius:10px}
+.rate.ok{color:var(--good)}
+/* Live counter band (Ramp): one wide card for the headline numbers; it follows the light/dark theme */
+.strip{grid-column:span 12;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);overflow:hidden;min-width:0;color:var(--ink)}
+.strip .hero{padding:22px 24px 20px;border-inline-end:1px solid var(--line-soft);display:flex;flex-direction:column;gap:12px;min-width:0}
+.strip .strip-lab{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.strip .strip-lab h2{margin:0;font-size:14.5px;font-weight:500}
+.strip .strip-lab .sub{color:var(--muted);font-size:12.5px}
+.strip #hero{display:flex;flex-direction:column;gap:12px}
+.strip .hero .big{color:var(--key);font-size:clamp(36px,4.2vw,52px)}
+.strip .hero .big small{color:var(--muted)}
+.strip .kgrid{height:auto;align-content:stretch}
+.strip .kpi .v{color:var(--ink)}
+@media (max-width:1040px){.strip{grid-template-columns:1fr}.strip .hero{border-inline-end:0;border-bottom:1px solid var(--line-soft)}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+</head><body><div dir="rtl" lang="ar">
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16.5 9.5 11l3.5 3.5L20 7.5" stroke="var(--volt-ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7.5h5v5" stroke="var(--volt-ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div><b>SQUAD<span>RIG</span></b><small>لوحة المتجر</small></div>
+    </div>
+    <span class="fresh" id="fresh"><i></i><span>جارِ التحميل…</span></span>
+    <div class="seg" role="group" aria-label="الفترة" id="period"><span class="pill" aria-hidden="true"></span>
+      <button type="button" data-p="7">٧ أيام</button><button type="button" data-p="30">٣٠ يوم</button><button type="button" data-p="60">٦٠ يوم</button><button type="button" data-p="365">سنة</button><button type="button" data-p="all">من البداية</button>
+    </div>
+    <button type="button" class="icon-btn" id="theme" title="الوضع الفاتح أو الداكن" aria-label="تبديل الوضع الفاتح والداكن"></button>
+    <button type="button" class="btn" id="reload" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>تحديث</button>
+    <nav class="tabs" aria-label="الأقسام">
+      <a href="#overview" data-tab="overview">نظرة عامة</a>
+      <a href="#finance" data-tab="finance" id="tab-fin" hidden>المالية</a>
+      <a href="#orders" data-tab="orders">الطلبات<span class="count" id="tc-orders"></span></a>
+      <a href="#cancel" data-tab="cancel">الإلغاءات</a>
+      <a href="#products" data-tab="products">المنتجات</a>
+      <a href="#customers" data-tab="customers">الزبائن<span class="count" id="tc-ab"></span></a>
+      <a href="#traffic" data-tab="traffic">الزيارات والمصادر</a>
+      <span class="bar" aria-hidden="true"></span>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="banner"></div>
+  <section data-view="overview">
+    <div class="grid">
+      <div class="strip"><div class="hero"><div class="strip-lab"><h2>المبيعات المستلمة</h2><span class="sub" id="hero-sub"></span></div><div id="hero"></div></div><div class="kgrid" id="kpis"></div></div>
+      <div class="panel c8"><div class="ph"><h2>المبيعات</h2><span class="sub" id="sales-sub"></span><span class="act"><span class="mini-seg" id="sales-mode"><button type="button" data-m="v" aria-pressed="true">القيمة</button><button type="button" data-m="n" aria-pressed="false">العدد</button></span></span></div><div class="pb" id="sales"></div></div>
+      <div class="panel c4"><div class="ph"><h2>حالة الطلبات</h2><span class="sub" id="status-sub"></span></div><div class="pb" id="status"></div></div>
+      <div class="panel c6"><div class="ph"><h2>رحلة الزائر</h2><span class="sub">من الزيارة لحد الطلب</span></div><div class="pb" id="funnel"></div></div>
+      <div class="panel c6"><div class="ph"><h2>تحتاج متابعة</h2></div><div class="pb" id="attention"></div></div>
+      <div class="panel c12"><div class="ph"><h2>الشهور</h2><span class="sub">مقارنة شهر بشهر</span></div><div class="pb"><div class="tw"><table id="months"></table></div></div></div>
+      <div class="panel c7"><div class="ph"><h2>أكثر المنتجات طلباً</h2><span class="sub">قيمة الطلبات، والمستلم منها</span></div><div class="pb" id="products-top"></div></div>
+      <div class="panel c5"><div class="ph"><h2>مصادر الطلبات</h2><span class="sub">أول مكان جاء منه الزبون</span></div><div class="pb" id="order-sources"></div></div>
+      <div class="panel c6"><div class="ph"><h2>طرق الدفع</h2></div><div class="pb" id="payments"></div></div>
+      <div class="panel c6"><div class="ph"><h2>أيام الأسبوع</h2><span class="sub">متى بتنعمل الطلبات</span></div><div class="pb" id="weekdays"></div></div>
+    </div>
+  </section>
+  <section data-view="finance" hidden>
+    <div id="fin-note"></div>
+    <div class="grid">
+      <div class="panel c12"><div class="kgrid" id="fkpis"></div></div>
+      <div class="panel c8"><div class="ph"><h2>المحصّل والتكاليف شهر بشهر</h2><span class="sub">من جدول الطلبات وسجل المصاريف</span></div><div class="pb" id="f-chart"></div></div>
+      <div class="panel c4"><div class="ph"><h2>المصروف الثابت</h2><span class="sub">من «المصاريف الدورية» · للمقارنة بس</span></div><div class="pb" id="f-fixed"></div></div>
+      <div class="panel c12"><div class="ph"><h2>الأرباح والخسائر</h2><span class="sub">كل شهر: المحصّل ناقص تكلفة البضاعة ناقص المصاريف</span></div><div class="pb"><div class="tw"><table id="f-pl"></table></div></div></div>
+      <div class="panel c6"><div class="ph"><h2>المصاريف حسب الفئة</h2><span class="sub" id="f-cat-sub"></span></div><div class="pb" id="f-cat"></div></div>
+      <div class="panel c6"><div class="ph"><h2>آخر المصاريف</h2><span class="sub">من سجل المصاريف</span></div><div class="pb"><div class="tw"><table id="f-log"></table></div></div></div>
+      <div class="panel c12"><div class="ph"><h2>مطابقة Shopify مع جدول الطلبات</h2><span class="sub">طلبات حالتها أو مبلغها مختلف بين الاتنين</span></div><div class="pb"><div class="tw"><table id="f-rec"></table></div></div></div>
+      <div class="panel c12"><div class="ph"><h2>أوردرات الواتساب</h2><span class="sub">مسجّلة بالجدول وما عدّت على Shopify</span></div><div class="pb"><div class="tw"><table id="f-wa"></table></div></div></div>
+    </div>
+  </section>
+  <section data-view="orders" hidden>
+    <div class="grid"><div class="panel c12">
+      <div class="ph"><h2>كل الطلبات</h2><span class="sub" id="orders-sub"></span><span class="act"><button type="button" class="btn" id="export" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>تصدير Excel</button></span></div>
+      <div class="pb"><div class="sumbar" id="osum"></div><div class="filters" id="ofilters"></div><div class="tw"><table id="otable"></table></div></div>
+    </div></div>
+  </section>
+  <section data-view="cancel" hidden>
+    <div class="grid">
+      <div class="panel c12"><div class="kgrid k4" id="xkpis"></div></div>
+      <div class="panel c6"><div class="ph"><h2>حسب طريقة الدفع</h2></div><div class="pb" id="x-pay"></div></div>
+      <div class="panel c6"><div class="ph"><h2>حسب المصدر</h2></div><div class="pb" id="x-src"></div></div>
+      <div class="panel c6"><div class="ph"><h2>حسب القسم</h2></div><div class="pb" id="x-cat"></div></div>
+      <div class="panel c6"><div class="ph"><h2>السبب والتوقيت</h2><span class="sub">كم مرّ بين الطلب والإلغاء</span></div><div class="pb" id="x-why"></div></div>
+    </div>
+  </section>
+  <section data-view="products" hidden>
+    <div class="grid">
+      <div class="panel c5"><div class="ph"><h2>جديد أو أوبن بوكس</h2><span class="sub">من كود المنتج</span></div><div class="pb" id="p-cond"></div></div>
+      <div class="panel c7"><div class="ph"><h2>حسب القسم</h2></div><div class="pb" id="p-cat"></div></div>
+      <div class="panel c12"><div class="ph"><h2>كل المنتجات المطلوبة</h2><span class="sub" id="p-all-sub"></span></div><div class="pb" id="p-all"></div></div>
+      <div class="panel c12"><div class="ph"><h2>أكثر منتجات تُركت في السلة</h2><span class="sub">ناس دخلوا الدفع وما كمّلوا</span></div><div class="pb" id="p-ab"></div></div>
+    </div>
+  </section>
+  <section data-view="customers" hidden>
+    <div class="grid">
+      <div class="panel c12"><div class="kgrid k5" id="ckpis"></div></div>
+      <div class="panel c12"><div class="ph"><h2>سلّات متروكة</h2><span class="sub">دخلوا صفحة الدفع وما كمّلوا. علّم «تم التواصل» بعد ما تكلّمه.</span></div><div class="pb"><div class="filters" id="afilters"></div><div class="tw"><table id="atable"></table></div></div></div>
+      <div class="panel c7"><div class="ph"><h2>الزبائن اللي اشتروا</h2><span class="sub" id="buyers-sub"></span></div><div class="pb"><div class="tw"><table id="btable"></table></div></div></div>
+      <div class="panel c5"><div class="ph"><h2>المبيعات المستلمة حسب المحافظة</h2></div><div class="pb" id="provinces"></div></div>
+      <div class="panel c12"><div class="ph"><h2>سجّلوا وما اشتروا ولا مرة</h2><span class="sub" id="nobuy-sub"></span></div><div class="pb"><div class="tw"><table id="ntable"></table></div></div></div>
+    </div>
+  </section>
+  <section data-view="traffic" hidden>
+    <div class="grid">
+      <div class="panel c12"><div class="ph"><h2>الزيارات</h2><span class="sub" id="sess-sub"></span></div><div class="pb" id="sessions"></div></div>
+      <div class="panel c12"><div class="ph"><h2>مصادر الزيارات</h2><span class="sub">كم زيارة جاب كل مصدر، وكم منها أضاف للسلة ووصل للدفع واشترى</span></div><div class="pb"><div class="tw"><table id="stable"></table></div></div></div>
+      <div class="panel c12"><div class="ph"><h2>صفحات الدخول</h2><span class="sub">أول صفحة يفتحها الزائر</span></div><div class="pb"><div class="tw"><table id="ptable"></table></div></div></div>
+      <div class="panel c12"><div class="ph"><h2>أوقات الزيارة</h2><span class="sub">آخر ٦٠ يوم · كل ما كان المربع أغمق، كانت الزيارات أكثر</span></div><div class="pb"><div class="tw" id="heat"></div></div></div>
+      <div class="panel c6"><div class="ph"><h2>الأجهزة</h2></div><div class="pb" id="devices"></div></div>
+      <div class="panel c6"><div class="ph"><h2>المدن</h2><span class="sub">حسب موقع الزائر</span></div><div class="pb" id="cities"></div></div>
+    </div>
+  </section>
+  <div class="foot">
+    <span id="foot-1">البيانات من Shopify. تتحدث كل ما يفتح الصفحة صاحب المتجر أو محرر عنده Shopify مربوط.</span>
+    <span id="foot-2">تفاصيل الطلبات والزبائن متاحة لآخر ٦٠ يوم فقط. المجاميع للفترات الأطول من تقارير Shopify.</span>
+    <span>كل الأوقات بتوقيت القاهرة.</span>
+  </div>
+</main>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async></script>
+<script>
+/* Google sign-in gate. The Apps Script bridge checks the Google ID token and its allow-list;
+   this page holds no data, keys or passwords. */
+(() => {
+  const API = "PASTE_EXEC_URL", CLIENT_ID = "PASTE_CLIENT_ID";
+  const K = "sqdash.idt";
+  const get = () => { try { return JSON.parse(localStorage.getItem(K)) || null; } catch { return null; } };
+  const put = v => { try { v ? localStorage.setItem(K, JSON.stringify(v)) : localStorage.removeItem(K); } catch {} };
+  const wipe = () => { try { Object.keys(localStorage).filter(k => k.indexOf("sqdash.") === 0).forEach(k => localStorage.removeItem(k)); } catch {} };
+  const expOf = t => { try { return JSON.parse(atob(t.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))).exp * 1000; } catch { return 0; } };
+  if (/[?&]logout\b/.test(location.search)) { wipe(); history.replaceState(null, "", location.pathname + location.hash); }
+  let tok = get(); if (tok && !(tok.exp > Date.now() + 60000)) tok = null;
+  let release, ready = new Promise(r => release = r), gateEl, gsiReady = false;
+  const say = m => { if (gateEl) gateEl.querySelector(".gmsg").textContent = m || ""; };
+
+  async function post(body) {
+    let r;
+    try { r = await fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body), redirect: "follow" }); }
+    catch { throw { code: "server_unavailable", retryable: true, message: "ما في اتصال بالسيرفر. تأكد من الإنترنت وجرّب مرة ثانية." }; }
+    const j = await r.json().catch(() => null);
+    if (!j) throw { code: "server_unavailable", retryable: true, message: "رد غير مفهوم من السيرفر (HTTP " + r.status + ")" };
+    return j;
+  }
+  function why(j) {
+    if (j.reason === "denied") return "الحساب " + (j.email || "") + " مش مسموح له يفتح اللوحة. ادخل بحساب ثاني.";
+    if (j.reason === "setup") return "إعدادات السكربت ناقصة (GOOGLE_CLIENT_ID أو ALLOWED_EMAILS).";
+    return "انتهت الجلسة. ادخل من جديد.";
+  }
+  async function onCredential(resp) {
+    const t = resp && resp.credential; if (!t) return;
+    say("جارِ التحقق…");
+    try {
+      const j = await post({ t, a: "ping" });
+      if (j.ok) { tok = { t, exp: expOf(t), email: j.email }; put(tok); if (gateEl) gateEl.hidden = true; release(); }
+      else { put(null); tok = null; showGate(why(j)); }
+    } catch (e) { say(e.message || "صار خطأ."); }
+  }
+  function initGsi() {
+    if (gsiReady || !(window.google && google.accounts && google.accounts.id)) return gsiReady;
+    google.accounts.id.initialize({ client_id: CLIENT_ID, callback: onCredential, auto_select: true, cancel_on_tap_outside: false, use_fedcm_for_prompt: true });
+    gsiReady = true;
+    return true;
+  }
+  function whenGsi(fn) { if (initGsi()) return fn(); const iv = setInterval(() => { if (initGsi()) { clearInterval(iv); fn(); } }, 150); }
+  function showGate(msg) {
+    if (!gateEl) {
+      gateEl = document.createElement("div");
+      gateEl.className = "sq-gate";
+      gateEl.setAttribute("dir", "rtl");
+      gateEl.innerHTML = '<div class="gbox"><div class="gmark"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4 16.5l5-5 3.5 3.5L20 7.5" stroke="#0A0C10" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7.5h5v5" stroke="#0A0C10" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h1>لوحة سكواد ريج</h1><p>ادخل بحساب Google المسموح له. اللوحة خاصة، وأي حساب ثاني بينرفض.</p><div class="gbtn"></div><div class="gmsg" role="alert"></div></div>';
+      const st = document.createElement("style");
+      st.textContent = '.sq-gate{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:16px;background:var(--void,#F6F7F8);font-family:"IBM Plex Sans Arabic","Inter",system-ui,sans-serif}.sq-gate[hidden]{display:none}.sq-gate .gbox{width:min(380px,100%);background:var(--surface,#fff);border:1px solid var(--line,#E4E6EA);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:12px;color:var(--ink,#0A0C10)}.sq-gate .gmark{width:40px;height:40px;border-radius:10px;background:#D3FF3E;display:grid;place-items:center}.sq-gate h1{margin:6px 0 0;font-size:19px;font-weight:500}.sq-gate p{margin:0;color:var(--muted,#676C75);font-size:14px;line-height:1.6}.sq-gate .gbtn{min-height:44px;margin-top:6px;direction:ltr;display:flex;justify-content:center}.sq-gate .gmsg{min-height:20px;font-size:13.5px;line-height:1.6;color:var(--bad,#D93636)}';
+      gateEl.prepend(st);
+      document.body.appendChild(gateEl);
+    }
+    gateEl.hidden = false; say(msg);
+    whenGsi(() => {
+      const box = gateEl.querySelector(".gbtn"); box.innerHTML = "";
+      google.accounts.id.renderButton(box, { theme: "outline", size: "large", text: "signin_with", shape: "pill", locale: "ar", width: 300 });
+      if (!msg) google.accounts.id.prompt();
+    });
+  }
+  function addLogout() {
+    const th = document.getElementById("theme"); if (!th || document.getElementById("sq-logout")) return;
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "icon-btn"; b.id = "sq-logout"; b.title = "خروج"; b.setAttribute("aria-label", "خروج");
+    b.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l-5-5 5-5"/><path d="M5 12h12"/></svg>';
+    b.addEventListener("click", () => { wipe(); try { google.accounts.id.disableAutoSelect(); } catch {} location.replace(location.pathname); });
+    th.parentNode.insertBefore(b, th);
+  }
+  const start = () => { addLogout(); if (tok) release(); else showGate(); };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+  window.SQ_CALL = async body => {
+    for (;;) {
+      await ready;
+      const j = await post(Object.assign({ t: tok && tok.t }, body));
+      if (j.auth === false) {
+        if (tok) { tok = null; put(null); ready = new Promise(r => release = r); showGate(why(j)); whenGsi(() => google.accounts.id.prompt()); }
+        else await new Promise(r => setTimeout(r, 300));
+        continue;
+      }
+      return j;
+    }
+  };
+})();
+</script>
+<script>
+window.SQ_FULL_ORDERS = true;
+window.SQ_SHEETS = async fresh => { const j = await window.SQ_CALL({ a: "sheets", fresh: !!fresh }); if (j.errors && !j.orders) throw new Error(j.errors[0].message); return j; };
+/* Web shim: gives the dashboard the same window.claude.use() it gets on claude.ai,
+   backed by the Apps Script bridge (SQ_CALL) and this browser's localStorage. */
+(() => {
+  const LS = "sqdash.";
+  const ls = { get(k) { try { return JSON.parse(localStorage.getItem(LS + k)); } catch { return null; } }, set(k, v) { try { localStorage.setItem(LS + k, JSON.stringify(v)); } catch {} }, del(k) { try { localStorage.removeItem(LS + k); } catch {} } };
+  async function gql(query, variables) {
+    const j = await window.SQ_CALL({ a: "gql", query, variables });
+    if (j.errors && !j.data) throw { code: "tool_error", retryable: /throttl|timeout|time/i.test(j.errors[0].message || ""), message: j.errors[0].message };
+    return j;
+  }
+  const mcp = {
+    async callTool(server, tool, input) {
+      if (tool === "graphql_query") {
+        const vars = Object.assign({}, input.variables || {}); if (input.first) vars.first = input.first; if (input.after) vars.after = input.after;
+        return { payload: await gql(input.query, vars) };
+      }
+      if (tool === "run-analytics-query") {
+        const j = await gql("query($q:String!){shopifyqlQuery(query:$q){tableData{columns{name dataType} rows} parseErrors}}", { q: input.query });
+        if (j.errors && j.errors.length) throw { code: "tool_error", message: j.errors[0].message };
+        const s = j.data && j.data.shopifyqlQuery;
+        if (!s || (s.parseErrors && s.parseErrors.length) || !s.tableData) throw { code: "tool_error", message: (s && s.parseErrors && s.parseErrors.join("; ")) || "تقرير فاضي" };
+        const cols = s.tableData.columns;
+        return { payload: { columns: cols, rows: s.tableData.rows.map(row => cols.map(c => row[c.name])) } };
+      }
+      throw { code: "bad_request", message: tool };
+    }
+  };
+  const listeners = {};
+  const readCol = name => { const idx = ls.get("idx:" + name) || []; return { docs: idx.map(id => ({ id, data: () => ls.get("doc:" + name + "/" + id) })).filter(d => d.data()) }; };
+  const notify = name => (listeners[name] || []).forEach(fn => { try { fn(readCol(name)); } catch {} });
+  const docRef = path => { const [col, id] = path.split("/"); return {
+    async set(v) { ls.set("doc:" + path, v); const idx = ls.get("idx:" + col) || []; if (!idx.includes(id)) { idx.push(id); ls.set("idx:" + col, idx); } notify(col); },
+    async delete() { ls.del("doc:" + path); ls.set("idx:" + col, (ls.get("idx:" + col) || []).filter(x => x !== id)); notify(col); }
+  }; };
+  const db = { doc: docRef, collection: name => ({ onSnapshot(next) { (listeners[name] = listeners[name] || []).push(next); setTimeout(() => next(readCol(name)), 0); return () => {}; } }) };
+  const user = { canEdit: async () => true, isOwner: async () => true, can: async () => true };
+  const downloads = { async save({ filename, data }) { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([data], { type: "text/csv;charset=utf-8" })); a.download = filename; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000); return { status: "saved" }; } };
+  const caps = { mcp, db, user, downloads };
+  window.claude = { use: async name => caps[name] || null };
+})();
+</script>
+<script>
+(() => {
+"use strict";
+const SERVER = "Shopify", TZ = "Africa/Cairo", DAY = 864e5, FIRST = "2025-09-01", STALE_MS = 10 * 60e3;
+const PERIODS = ["7", "30", "60", "365", "all"];
+const FULL = !!window.SQ_FULL_ORDERS; // local version: the app has read_all_orders
+const HIDDEN = new Set(["#1055SQ"]); // orders the owner asked to leave out of the dashboard (still in Shopify)
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const nf = new Intl.NumberFormat("en-US");
+const money = v => nf.format(Math.round(v || 0));
+const pct = (v, d = 1) => isFinite(v) ? (v * 100).toFixed(d) + "%" : "—";
+const fKey = new Intl.DateTimeFormat("en-CA", { timeZone: TZ });
+const dayKey = d => fKey.format(d);
+const fDay = new Intl.DateTimeFormat("ar-EG-u-nu-latn", { timeZone: "UTC", day: "numeric", month: "short" });
+const fDayTime = new Intl.DateTimeFormat("ar-EG-u-nu-latn", { timeZone: TZ, day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
+const fMonth = new Intl.DateTimeFormat("ar-EG-u-nu-latn", { timeZone: "UTC", month: "short", year: "2-digit" });
+const fMonthL = new Intl.DateTimeFormat("ar-EG-u-nu-latn", { timeZone: "UTC", month: "long", year: "numeric" });
+const fAgo = ms => { const m = Math.round(ms / 60e3); if (m < 1) return "الآن"; if (m < 60) return `قبل ${m} دقيقة`; const h = Math.round(m / 60); if (h < 24) return `قبل ${h} ساعة`; return `قبل ${Math.round(h / 24)} يوم`; };
+const kDate = k => new Date(k + "T12:00:00Z");
+const addDays = (k, n) => { const d = kDate(k); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const addMonth = k => { const d = kDate(k); d.setUTCMonth(d.getUTCMonth() + 1); return d.toISOString().slice(0, 10); };
+const shortTitle = t => String(t || "").split(" | ")[0];
+const amt = s => +(s && s.shopMoney && s.shopMoney.amount || 0);
+const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
+const reduceMotion = (() => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { return false; } })();
+
+/* ---------- state ---------- */
+const S = { period: PERIODS.includes(store.get("sq.period")) ? store.get("sq.period") : "30", tab: "overview", d: null, loading: false, err: {}, writer: false, noData: false, filter: "all", q: "", open: null, abFilter: "open", contacted: {}, salesMode: "v", anim: true, fin: null, finErr: null, finLoading: false };
+let mcp = null, db = null, user = null, downloads = null;
+
+/* ---------- theme ---------- */
+const ICONS = { sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>', moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>' };
+function curTheme() { const t = document.documentElement.getAttribute("data-theme"); if (t === "light" || t === "dark") return t; try { return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } catch { return "light"; } }
+function applyTheme(t) { if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); $("#theme").innerHTML = curTheme() === "dark" ? ICONS.sun : ICONS.moon; }
+applyTheme(store.get("sq.theme"));
+$("#theme").addEventListener("click", () => { const n = curTheme() === "dark" ? "light" : "dark"; store.set("sq.theme", n); applyTheme(n); renderAll(); });
+
+/* ---------- taxonomy ---------- */
+const CAT = { MON: "شاشات", RAM: "رامات كمبيوتر", LRAM: "رامات لابتوب", MOU: "ماوس", HDST: "سماعات رأس", KB: "كيبوردات", LAP: "لابتوبات", COMP: "أجهزة كمبيوتر", MOH: "مذربوردات", CASE: "كيسات", SSD: "هاردات SSD", CPU: "معالجات", GPU: "كروت شاشة", BAG: "شنط", CTRL: "يدّات تحكم", WC: "كاميرات ويب", FLSH: "فلاشات", CBL: "كابلات", CHR: "كراسي", HUB: "موزّعات USB", CPUC: "مبرّدات معالج", SPK: "سماعات خارجية", PST: "معجون حراري", MIC: "مايكات", FAN: "مراوح", COMBO: "كيبورد وماوس", CAM: "كاميرات", PAD: "ماوس باد", CARD: "كروت", PSU: "باور سبلاي", HDD: "هاردات HDD", NET: "شبكات", COOL: "تبريد", ADP: "محوّلات" };
+const catOf = sku => { const p = String(sku || "").split("-")[0].toUpperCase(); return CAT[p] || (p ? "أخرى" : "بدون كود"); };
+const condOf = sku => { const s = "-" + String(sku || "").toUpperCase() + "-"; if (s.includes("-NEW-")) return "new"; if (s.includes("-B-")) return "used"; if (s.includes("-OB-")) return "ob"; return "na"; };
+const COND = { new: ["جديد", "--signal"], ob: ["أوبن بوكس", "--volt-fill"], used: ["مستعمل", "--neutral"], na: ["غير محدد", "--line"] };
+const condTag = k => `<span class="cond ${k}"><i></i>${COND[k][0]}</span>`;
+const ST_LABEL = { delivered: "تم التسليم", paid: "مدفوع · لم يُسلَّم", pending: "بانتظار التنفيذ", cancelled: "ملغي", refunded: "مسترجع" };
+const ST_ORDER = ["delivered", "paid", "pending", "refunded", "cancelled"];
+const ST_VAR = { delivered: "--good", paid: "--signal", pending: "--warn", refunded: "--serious", cancelled: "--bad" };
+const GATE = { "Cash on Delivery (COD)": "عند الاستلام", "Vodafone Cash": "فودافون كاش", "InstaPay": "إنستاباي", "manual": "يدوي" };
+const REASON = { CUSTOMER: "طلب الزبون", DECLINED: "رُفض الدفع", FRAUD: "اشتباه احتيال", INVENTORY: "نفاد المخزون", STAFF: "خطأ من الفريق", OTHER: "سبب آخر" };
+const DOW = ["الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت", "الأحد"]; // ShopifyQL day_of_week 0 = Monday
+const DOW_ROWS = [5, 6, 0, 1, 2, 3, 4];
+const status = o => { if (o.c) return "cancelled"; if (o.fs === "REFUNDED") return "refunded"; if (o.dl || o.sh) return "delivered"; if (["PAID", "PARTIALLY_PAID", "PARTIALLY_REFUNDED"].includes(o.fs)) return "paid"; return "pending"; };
+const unpaid = o => status(o) === "delivered" && ["PENDING", "AUTHORIZED", "PARTIALLY_PAID"].includes(o.fs);
+const shownAmt = o => status(o) === "cancelled" ? o.tot : o.cur;
+const liNow = o => status(o) === "cancelled" ? o.li : o.li.filter(l => (l[4] ?? l[1]) > 0);
+const qNow = (o, l) => status(o) === "cancelled" ? l[1] : (l[4] ?? l[1]);
+const recv = o => status(o) === "delivered" ? o.cur : 0;
+const openAmt = o => ["paid", "pending"].includes(status(o)) ? o.cur : 0;
+const gateName = o => (o.g || []).map(g => GATE[g] || g).join("، ") || "—";
+const srcOf = o => { const j = o.j; let s = j && (j.s || j.u) || ""; if (!s) return { k: "unknown", n: "غير معروف" }; const k = s.toLowerCase(); if (k === "direct") return { k, n: "مباشر" }; if (k.includes("chatgpt")) return { k: "chatgpt", n: "ChatGPT" }; if (k.includes("google")) return { k: "google", n: "Google" }; if (k.includes("facebook")) return { k: "facebook", n: "Facebook" }; return { k, n: s }; };
+const oDay = o => dayKey(new Date(o.t));
+const phoneOf = (...c) => c.find(Boolean) || "";
+const pathOf = u => { if (!u) return ""; try { const p = decodeURIComponent(new URL(u).pathname); return p.length > 56 ? p.slice(0, 54) + "…" : p; } catch { return u; } };
+const adminOrder = id => "https://admin.shopify.com/store/1ceqb0-c0/orders/" + String(id).split("/").pop();
+const adminCheckout = id => "https://admin.shopify.com/store/1ceqb0-c0/checkouts/" + String(id).split("/").pop();
+
+/* ---------- periods ---------- */
+const today = () => dayKey(new Date());
+function range(p = S.period, prev = false) { const t = today(); if (p === "all") return prev ? null : [FIRST, t]; const n = +p, a = addDays(t, -(n - 1)); return prev ? [addDays(a, -n), addDays(a, -1)] : [a, t]; }
+const inR = (k, r) => !!r && k >= r[0] && k <= r[1];
+const ordersCover = r => !!r && (FULL || r[0] >= addDays(today(), -59));
+const detailMode = () => FULL || ["7", "30", "60"].includes(S.period);
+const grain = () => S.period === "all" ? "month" : S.period === "365" ? "week" : "day";
+function bucketOf(k, g) { if (g === "day") return k; if (g === "month") return k.slice(0, 8) + "01"; const d = kDate(k); return addDays(k, -((d.getUTCDay() + 6) % 7)); }
+function buckets(r, g) { const out = []; let k = bucketOf(r[0], g); while (k <= r[1]) { out.push(k); k = g === "day" ? addDays(k, 1) : g === "week" ? addDays(k, 7) : addMonth(k); } return out; }
+const bLabel = (k, g) => g === "month" ? fMonth.format(kDate(k)) : fDay.format(kDate(k));
+const periodWord = (p = S.period) => ({ "7": "آخر ٧ أيام", "30": "آخر ٣٠ يوم", "60": "آخر ٦٠ يوم", "365": "آخر سنة", "all": "من أول يوم" })[p];
+const detailWord = () => detailMode() ? periodWord() : "آخر ٦٠ يوم";
+
+/* ---------- connector ---------- */
+const CODE_MSG = { needs_reauth: "انتهى ربط Shopify بحسابك. أعد ربطه من إعدادات claude.ai ← Connectors.", server_not_connected: "Shopify غير مربوط، فالصفحة تعرض آخر نسخة محفوظة.", selection_required: "عندك أكثر من ربط Shopify. اختر المتجر، ثم اضغط تحديث.", not_in_manifest: "لم تسمح للصفحة بالقراءة من Shopify. افتح أذونات الصفحة واسمح لها.", blocked_by_policy: "إعدادات المؤسسة تمنع القراءة من Shopify.", server_unavailable: "Shopify لم يرد. جرّب التحديث بعد قليل." };
+const errMsg = e => e && e.code === "tool_error" ? "Shopify رفض الطلب: " + (e.message || "") : (CODE_MSG[e && e.code] || (e && e.message) || "تعذّر جلب البيانات.");
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function call(tool, input, refresh) {
+  const opts = { cache: { staleTime: refresh ? 0 : 300000, gcTime: 3600000, refresh: !!refresh } };
+  let r; try { r = await mcp.callTool(SERVER, tool, input, opts); } catch (e) { if (e && e.retryable) { await sleep((e.retryAfterMs || 1200) + Math.random() * 600); r = await mcp.callTool(SERVER, tool, input, opts); } else throw e; }
+  let p = r.payload; if (typeof p === "string") { try { p = JSON.parse(p); } catch { throw { code: "tool_error", message: p.slice(0, 200) }; } }
+  return p;
+}
+async function gqlAll(query, key, maxPages, refresh) {
+  const out = []; let after = null;
+  for (let i = 0; i < maxPages; i++) { const input = { query, first: 50 }; if (after) input.after = after; const p = await call("graphql_query", input, refresh);
+    if (p && p.errors && p.errors.length) throw { code: "tool_error", message: p.errors[0].message };
+    const c = p && p.data && p.data[key]; if (!c) throw { code: "tool_error", message: "رد غير متوقع من Shopify" };
+    out.push(...c.nodes); if (!c.pageInfo.hasNextPage) break; after = c.pageInfo.endCursor; }
+  return out;
+}
+async function qlRows(query, refresh) {
+  const p = await call("run-analytics-query", { query }, refresh);
+  if (!p || !p.columns) throw { code: "tool_error", message: (p && (p.error || p.message)) || "رد غير متوقع من التقارير" };
+  return p.rows.map(r => r.map((v, i) => /INTEGER|MONEY|PERCENT|FLOAT|NUMBER|DECIMAL|DAY_OF_WEEK|HOUR_OF_DAY/.test(p.columns[i].dataType) ? (v === null || v === "" ? 0 : +v) : (v ?? "")));
+}
+const Q_ORDERS = `query($first:Int!,$after:String){orders(first:$first,after:$after,sortKey:CREATED_AT,reverse:true){pageInfo{hasNextPage endCursor}nodes{id name createdAt cancelledAt cancelReason displayFinancialStatus displayFulfillmentStatus paymentGatewayNames customerLocale test totalPriceSet{shopMoney{amount}} currentTotalPriceSet{shopMoney{amount}} customer{id displayName numberOfOrders defaultPhoneNumber{phoneNumber} defaultEmailAddress{emailAddress}} shippingAddress{city province phone} fulfillments(first:5){displayStatus createdAt} lineItems(first:10){nodes{title quantity currentQuantity sku originalTotalSet{shopMoney{amount}}}} customerJourneySummary{daysToConversion customerOrderIndex firstVisit{source landingPage occurredAt utmParameters{source}} lastVisit{source landingPage}}}}}`;
+const Q_AB = `query($first:Int!,$after:String){abandonedCheckouts(first:$first,after:$after,reverse:true){pageInfo{hasNextPage endCursor}nodes{id createdAt completedAt abandonedCheckoutUrl totalPriceSet{shopMoney{amount}} shippingAddress{city province phone} customer{id displayName numberOfOrders lastOrder{createdAt} defaultPhoneNumber{phoneNumber} defaultEmailAddress{emailAddress}} lineItems(first:6){nodes{title quantity sku originalTotalPriceSet{shopMoney{amount}}}}}}}`;
+const Q_CU = `query($first:Int!,$after:String){customers(first:$first,after:$after,sortKey:CREATED_AT,reverse:true){pageInfo{hasNextPage endCursor}nodes{id displayName createdAt numberOfOrders amountSpent{amount} defaultPhoneNumber{phoneNumber} defaultEmailAddress{emailAddress} defaultAddress{city province phone}}}}`;
+const mapOrder = o => { const j = o.customerJourneySummary, f = o.fulfillments || [], ft = f.map(x => x.createdAt).filter(Boolean).sort()[0] || null;
+  return { id: o.id, n: o.name, t: o.createdAt, c: o.cancelledAt, cr: o.cancelReason, fs: o.displayFinancialStatus, ff: o.displayFulfillmentStatus,
+    dl: f.some(x => x.displayStatus === "DELIVERED"), sh: f.length > 0 || ["FULFILLED", "PARTIALLY_FULFILLED"].includes(o.displayFulfillmentStatus), ft,
+    g: o.paymentGatewayNames || [], loc: o.customerLocale || "", tot: amt(o.totalPriceSet), cur: amt(o.currentTotalPriceSet),
+    cu: o.customer ? { id: o.customer.id, nm: o.customer.displayName, no: +o.customer.numberOfOrders, ph: o.customer.defaultPhoneNumber && o.customer.defaultPhoneNumber.phoneNumber || "", em: o.customer.defaultEmailAddress && o.customer.defaultEmailAddress.emailAddress || "" } : null,
+    ad: o.shippingAddress ? { ci: o.shippingAddress.city || "", pr: o.shippingAddress.province || "", ph: o.shippingAddress.phone || "" } : null,
+    li: o.lineItems.nodes.map(l => [shortTitle(l.title), l.quantity, l.sku || "", amt(l.originalTotalSet), l.currentQuantity ?? l.quantity]),
+    j: j && j.firstVisit ? { s: j.firstVisit.source || "", u: j.firstVisit.utmParameters && j.firstVisit.utmParameters.source || "", lp: j.firstVisit.landingPage || "", at: j.firstVisit.occurredAt, ls: j.lastVisit && j.lastVisit.source || "", llp: j.lastVisit && j.lastVisit.landingPage || "", d: j.daysToConversion, i: j.customerOrderIndex } : null }; };
+const mapAb = a => ({ id: a.id, t: a.createdAt, done: a.completedAt, url: a.abandonedCheckoutUrl, tot: amt(a.totalPriceSet),
+  ad: a.shippingAddress ? { ci: a.shippingAddress.city || "", pr: a.shippingAddress.province || "", ph: a.shippingAddress.phone || "" } : null,
+  cu: a.customer ? { id: a.customer.id, nm: a.customer.displayName, no: +a.customer.numberOfOrders, lo: a.customer.lastOrder && a.customer.lastOrder.createdAt || null, ph: a.customer.defaultPhoneNumber && a.customer.defaultPhoneNumber.phoneNumber || "", em: a.customer.defaultEmailAddress && a.customer.defaultEmailAddress.emailAddress || "" } : null,
+  li: a.lineItems.nodes.map(l => [shortTitle(l.title), l.quantity, l.sku || "", amt(l.originalTotalPriceSet)]) });
+const mapCu = c => ({ id: c.id, nm: c.displayName, t: c.createdAt, no: +c.numberOfOrders, sp: +(c.amountSpent && c.amountSpent.amount || 0), ph: phoneOf(c.defaultPhoneNumber && c.defaultPhoneNumber.phoneNumber, c.defaultAddress && c.defaultAddress.phone), em: c.defaultEmailAddress && c.defaultEmailAddress.emailAddress || "", ci: c.defaultAddress ? (c.defaultAddress.city || c.defaultAddress.province || "") : "" });
+
+/* ---------- live fetch + snapshot ---------- */
+const sinceOf = p => p === "all" ? `SINCE ${FIRST} UNTIL today` : `SINCE -${p}d UNTIL today`;
+async function fetchLive(refresh) {
+  if (!mcp || S.loading) return;
+  S.loading = true; S.err = {}; setFresh(); renderAll();
+  const prev = S.d || {}, next = { ...prev, cities: { ...(prev.cities || {}) }, pages: { ...(prev.pages || {}) } }, H = `SINCE ${FIRST} UNTIL today`;
+  const jobs = [
+    ["orders", () => gqlAll(Q_ORDERS, "orders", FULL ? 40 : 8, refresh).then(v => next.orders = v.filter(o => !o.test).map(mapOrder))],
+    ["ab", () => gqlAll(Q_AB, "abandonedCheckouts", 4, refresh).then(v => next.ab = v.map(mapAb))],
+    ["cu", () => gqlAll(Q_CU, "customers", 10, refresh).then(v => next.cu = v.map(mapCu))],
+    ["hs", () => qlRows(`FROM sales SHOW orders, gross_sales, sales_reversals, net_sales GROUP BY day ${H} ORDER BY day ASC LIMIT 5000`, refresh).then(v => next.hs = v)],
+    ["hsrc", () => qlRows(`FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout GROUP BY day, referrer_source, referrer_name ${H} ORDER BY day ASC LIMIT 5000`, refresh).then(v => next.hsrc = v)],
+    ["hdev", () => qlRows(`FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout GROUP BY day, session_device_type ${H} ORDER BY day ASC LIMIT 5000`, refresh).then(v => next.hdev = v)],
+    ["hprod", () => qlRows(`FROM sales SHOW orders, gross_sales, net_sales GROUP BY day, product_title ${H} ORDER BY day ASC LIMIT 5000`, refresh).then(v => next.hprod = v.map(r => [r[0], shortTitle(r[1]), r[2], r[3], r[4]]))],
+    ["heat", () => qlRows(`FROM sessions SHOW sessions, sessions_with_cart_additions GROUP BY day_of_week, hour_of_day SINCE -60d UNTIL today LIMIT 500`, refresh).then(v => next.heat = v)],
+    ...PERIODS.map(p => ["cities" + p, () => qlRows(`FROM sessions SHOW sessions GROUP BY session_city ${sinceOf(p)} ORDER BY sessions DESC LIMIT 10`, refresh).then(v => next.cities[p] = v)]),
+    ...PERIODS.map(p => ["pages" + p, () => qlRows(`FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_completed_checkout GROUP BY landing_page_path ${sinceOf(p)} ORDER BY sessions DESC LIMIT 12`, refresh).then(v => next.pages[p] = v)])
+  ];
+  let ok = 0, i = 0;
+  const hard = new Set(["needs_reauth", "server_not_connected", "selection_required", "not_in_manifest", "blocked_by_policy", "approval_required", "not_granted", "capability_disabled"]);
+  const worker = async () => { while (i < jobs.length) { const [k, fn] = jobs[i++]; try { await fn(); ok++; } catch (e) { if (e && hard.has(e.code)) { S.err[k] = e; continue; } await sleep(1500 + Math.random() * 1000); try { await fn(); ok++; } catch (e2) { S.err[k] = e2 || { code: "upstream_error" }; } } } };
+  await Promise.all([worker(), worker(), worker(), worker()]);
+  if (ok) { next.at = Date.now(); S.d = next; S.live = true; S.liveErr = null; S.anim = true; lastView = null; }
+  S.loading = false;
+  if (!ok && Object.keys(S.err).length) S.liveErr = S.err[Object.keys(S.err)[0]];
+  if (ok && S.writer && db) await persist(next).catch(() => {});
+  setFresh(); renderAll();
+}
+const SNAP_KEYS = { orders: ["orders"], ab: ["ab"], cu: ["cu"], hist: ["hs", "hsrc", "hdev", "hprod"], per: ["cities", "pages", "heat"] };
+const lastSaved = {};
+async function persist(d) {
+  for (const [doc, keys] of Object.entries(SNAP_KEYS)) {
+    const body = {}; keys.forEach(k => { if (d[k] !== undefined) body[k] = d[k]; });
+    let json = JSON.stringify(body);
+    if (doc === "orders" && json.length > 240000) { const o = body.orders.slice(); while (JSON.stringify({ orders: o }).length > 240000) o.pop(); json = JSON.stringify({ orders: o }); }
+    if (json === lastSaved[doc]) continue;
+    await db.doc("snap/" + doc).set({ json, at: d.at }); lastSaved[doc] = json;
+  }
+  await db.doc("snap/meta").set({ at: d.at, v: 4 });
+}
+function onSnap(qs) {
+  const d = S.live ? null : {}; let at = 0;
+  qs.docs.forEach(doc => { const b = doc.data(); if (!b) return; if (doc.id === "meta") { at = b.at || 0; return; } lastSaved[doc.id] = b.json; if (d) { try { Object.assign(d, JSON.parse(b.json)); } catch {} } });
+  if (d && Object.keys(d).length) { d.at = at; d.cities = d.cities || {}; d.pages = d.pages || {}; S.d = d; S.noData = false; S.anim = true; lastView = null; } else if (!S.d) S.noData = true;
+  if (!S.live) { setFresh(); renderAll(); }
+}
+
+/* ---------- freshness ---------- */
+function setFresh() {
+  const el = $("#fresh"), t = el.querySelector("span"); el.className = "fresh";
+  if (S.loading) { el.classList.add("busy"); t.textContent = "جارِ التحديث من Shopify…"; }
+  else if (S.d && S.d.at) { const age = Date.now() - S.d.at; el.classList.add(age < STALE_MS * 3 ? "live" : "old"); t.textContent = "محدّثة " + fAgo(age); }
+  else t.textContent = S.noData ? "لا توجد بيانات محفوظة بعد" : "جارِ التحميل…";
+  const b = $("#reload"); b.hidden = !(S.writer && mcp); b.disabled = S.loading; b.classList.toggle("spin", S.loading);
+}
+setInterval(setFresh, 60e3);
+
+/* ---------- render helpers ---------- */
+const loadingBox = tall => `<div class="skel" style="width:40%"></div><div class="skel ${tall ? "tall" : ""}"></div><div class="skel" style="width:70%"></div>`;
+const errBox = msg => `<div class="err" role="alert">${esc(msg)}</div>`;
+function need(el, key, tall) {
+  if (S.d && S.d[key] !== undefined) return true;
+  el.innerHTML = S.noData && !S.loading ? `<div class="empty">ما في بيانات بعد. لما يفتح الصفحة صاحب المتجر بتتعبّى.</div>` : S.err[key] ? errBox(errMsg(S.err[key])) : S.d && !S.loading ? `<div class="empty">هذا القسم ما انحفظ في آخر تحديث. بيظهر مع التحديث الجاي.</div>` : loadingBox(tall);
+  return false;
+}
+function deltaHtml(cur, prev, invert) {
+  if (prev === undefined || prev === null || !isFinite(prev) || !isFinite(cur)) return "";
+  if (prev === 0) return cur === 0 ? '<span class="delta flat">0%</span>' : "";
+  const d = (cur - prev) / Math.abs(prev), good = invert ? d < 0 : d > 0;
+  return `<span class="delta ${Math.abs(d) < .005 ? "flat" : good ? "up" : "down"}">${d > 0 ? "▲" : d < 0 ? "▼" : ""} ${Math.abs(d * 100).toFixed(0)}%</span>`;
+}
+const animOn = () => S.anim && !reduceMotion;
+function spark(vals, color = "--accent", h = 28) {
+  if (!vals || vals.length < 2) return "";
+  const W = 120, H = h, max = Math.max(...vals, 1), min = Math.min(0, ...vals), n = vals.length;
+  const x = i => i * W / (n - 1), y = v => H - 3 - ((v - min) / (max - min || 1)) * (H - 6);
+  const pts = vals.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,${H} ${pts} ${W},${H}" fill="var(${color})" opacity=".10"/><polyline points="${pts}" fill="none" stroke="var(${color})" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"${animOn() ? ' pathLength="1" class="draw"' : ""}/></svg>`;
+}
+function countUp(root) {
+  $$("[data-cu]", root).forEach(el => {
+    const to = +el.dataset.cu, fmt = el.dataset.fmt, dp = el.dataset.dp != null ? +el.dataset.dp : 1, f = v => fmt === "pct" ? (v * 100).toFixed(dp) + "%" : fmt === "int" ? nf.format(Math.round(v)) : money(v);
+    if (!animOn() || !isFinite(to) || !to) { el.textContent = f(to || 0); return; }
+    const t0 = performance.now(), dur = 900;
+    const step = now => { const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = f(to * e); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  });
+}
+const cu = (v, fmt = "money", dp) => `<span class="n" data-cu="${v}" data-fmt="${fmt}"${dp != null ? ` data-dp="${dp}"` : ""}>${fmt === "pct" ? pct(v, dp ?? 1) : fmt === "int" ? nf.format(v) : money(v)}</span>`;
+function niceMax(v) { if (v <= 0) return 1; const e = Math.pow(10, Math.floor(Math.log10(v))), f = v / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * e; }
+const compact = v => v >= 1e6 ? +(v / 1e6).toFixed(1) + "M" : v >= 1e3 ? +(v / 1e3).toFixed(v < 1e4 ? 1 : 0) + "K" : String(Math.round(v));
+
+function barChart(el, cats, series, mode, fmt, extraTip) {
+  const W = Math.max(280, el.clientWidth || 600), H = 240, m = { t: 12, r: 8, b: 26, l: 46 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b, n = cats.length || 1;
+  const tot = i => mode === "stack" ? series.reduce((s, se) => s + Math.max(0, se.values[i]), 0) : Math.max(...series.map(se => se.values[i]));
+  let max = 0; for (let i = 0; i < n; i++) max = Math.max(max, tot(i));
+  const top = niceMax(max * 1.05), y = v => m.t + ih - (v / top) * ih, band = iw / n;
+  const bw = mode === "stack" ? Math.max(2, Math.min(26, band * .62)) : Math.max(2, Math.min(14, band * .34));
+  let g = "";
+  for (let k = 0; k <= 4; k++) { const v = top * k / 4, yy = y(v); g += `<line x1="${m.l}" x2="${W - m.r}" y1="${yy}" y2="${yy}" stroke="var(${k ? "--grid" : "--axis"})" ${k ? 'stroke-dasharray="2 4"' : ""}/><text x="${m.l - 8}" y="${yy + 3.5}" text-anchor="end">${compact(v)}</text>`; }
+  const every = Math.max(1, Math.ceil(n / Math.max(1, Math.floor(iw / 64))));
+  cats.forEach((c, i) => { if (i % every === 0) g += `<text class="ar" x="${m.l + band * i + band / 2}" y="${H - 8}" text-anchor="middle">${esc(c)}</text>`; });
+  const rr = (x, yTop, w, h, round) => { if (h <= 0) return ""; const r = Math.min(round ? 4 : 0, w / 2, h); return `M${x},${yTop + h}V${yTop + r}${r ? `Q${x},${yTop} ${x + r},${yTop}H${x + w - r}Q${x + w},${yTop} ${x + w},${yTop + r}` : `H${x + w}`}V${yTop + h}Z`; };
+  const an = animOn(); let bars = "";
+  for (let i = 0; i < n; i++) {
+    const cx = m.l + band * i + band / 2, attr = an ? ` class="grow" style="animation-delay:${Math.min(i * 18, 600)}ms"` : "";
+    let seg = "";
+    if (mode === "stack") { let base = 0; const live = series.map((s, j) => [j, Math.max(0, s.values[i])]).filter(a => a[1] > 0); live.forEach(([j, v], idx) => { const y0 = y(base + v), h = y(base) - y0 - (idx ? 2 : 0); seg += `<path d="${rr(cx - bw / 2, y0, bw, h, idx === live.length - 1)}" fill="var(${series[j].v})"/>`; base += v; }); }
+    else { const gw = bw * series.length + 2 * (series.length - 1); series.forEach((s, j) => { const v = Math.max(0, s.values[i]), x = cx - gw / 2 + j * (bw + 2); seg += `<path d="${rr(x, y(v), bw, y(0) - y(v), true)}" fill="var(${s.v})"/>`; }); }
+    if (seg) bars += `<g${attr}>${seg}</g>`;
+  }
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="رسم بياني">${g}<rect class="hl" x="0" y="${m.t}" width="${band}" height="${ih}" rx="6" fill="var(--accent-wash)" opacity="0"/>${bars}<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent" class="hit"/></svg><div class="tip" hidden></div>`;
+  const svg = el.querySelector("svg"), tip = el.querySelector(".tip"), hl = el.querySelector(".hl"), hit = el.querySelector(".hit");
+  const move = ev => { const r = svg.getBoundingClientRect(), x = (ev.clientX - r.left) * (W / r.width); const i = Math.min(n - 1, Math.max(0, Math.floor((x - m.l) / band)));
+    hl.setAttribute("x", m.l + band * i); hl.setAttribute("opacity", "1");
+    tip.innerHTML = `<div class="t">${esc(cats[i])}</div>` + series.map(s => `<div class="l"><span><i class="sw" style="background:var(${s.v})"></i>${s.name}</span><b>${fmt(s.values[i])}</b></div>`).join("") + (extraTip ? extraTip(i) : "");
+    tip.hidden = false; const px = (m.l + band * i + band / 2) * (r.width / W), tw = tip.offsetWidth; tip.style.left = Math.min(Math.max(0, px - tw / 2), r.width - tw) + "px"; tip.style.top = "0px"; };
+  hit.addEventListener("pointermove", move); hit.addEventListener("pointerdown", move);
+  hit.addEventListener("pointerleave", () => { tip.hidden = true; hl.setAttribute("opacity", "0"); });
+}
+function areaChart(el, cats, values, name, extraTip) {
+  const W = Math.max(280, el.clientWidth || 600), H = 240, m = { t: 12, r: 12, b: 26, l: 46 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b, n = values.length;
+  const top = niceMax(Math.max(1, ...values) * 1.05), x = i => m.l + (n <= 1 ? iw / 2 : iw * i / (n - 1)), y = v => m.t + ih - (v / top) * ih;
+  let g = "";
+  for (let k = 0; k <= 4; k++) { const v = top * k / 4, yy = y(v); g += `<line x1="${m.l}" x2="${W - m.r}" y1="${yy}" y2="${yy}" stroke="var(${k ? "--grid" : "--axis"})" ${k ? 'stroke-dasharray="2 4"' : ""}/><text x="${m.l - 8}" y="${yy + 3.5}" text-anchor="end">${compact(v)}</text>`; }
+  const every = Math.max(1, Math.ceil(n / Math.max(1, Math.floor(iw / 64))));
+  cats.forEach((c, i) => { if (i % every === 0) g += `<text class="ar" x="${x(i)}" y="${H - 8}" text-anchor="middle">${esc(c)}</text>`; });
+  const line = "M" + values.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("L"), an = animOn(), gid = "g" + Math.random().toString(36).slice(2, 7);
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="${esc(name)}"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>${g}<path d="${line}L${x(n - 1)},${y(0)}L${x(0)},${y(0)}Z" fill="url(#${gid})" ${an ? 'style="animation:fade 1s var(--ease) both"' : ""}/><path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round" ${an ? 'pathLength="1" class="draw"' : ""}/>${n ? `<circle cx="${x(n - 1)}" cy="${y(values[n - 1])}" r="4" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>` : ""}<line class="cx" y1="${m.t}" y2="${m.t + ih}" stroke="var(--axis)" opacity="0"/><circle class="cd" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" opacity="0"/><rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent" class="hit"/></svg><div class="tip" hidden></div>`;
+  const svg = el.querySelector("svg"), tip = el.querySelector(".tip"), cxl = el.querySelector(".cx"), cd = el.querySelector(".cd"), hit = el.querySelector(".hit");
+  const move = ev => { const r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) * (W / r.width); const i = Math.min(n - 1, Math.max(0, Math.round((px - m.l) / (iw / Math.max(1, n - 1)))));
+    cxl.setAttribute("x1", x(i)); cxl.setAttribute("x2", x(i)); cxl.setAttribute("opacity", "1"); cd.setAttribute("cx", x(i)); cd.setAttribute("cy", y(values[i])); cd.setAttribute("opacity", "1");
+    tip.innerHTML = `<div class="t">${esc(cats[i])}</div><div class="l"><span>${esc(name)}</span><b>${nf.format(Math.round(values[i]))}</b></div>` + (extraTip ? extraTip(i) : "");
+    tip.hidden = false; const sx = x(i) * (r.width / W), tw = tip.offsetWidth; tip.style.left = Math.min(Math.max(0, sx - tw / 2), r.width - tw) + "px"; tip.style.top = "0px"; };
+  hit.addEventListener("pointermove", move); hit.addEventListener("pointerdown", move);
+  hit.addEventListener("pointerleave", () => { tip.hidden = true; cxl.setAttribute("opacity", "0"); cd.setAttribute("opacity", "0"); });
+}
+
+/* ---------- aggregations ---------- */
+const allOrders = () => (S.d && S.d.orders || []).filter(o => !HIDDEN.has(o.n));
+const ordersIn = r => allOrders().filter(o => inR(oDay(o), r));
+const pOrders = () => ordersIn(detailMode() ? range() : [addDays(today(), -59), today()]);
+function sumRows(rows, r, idx) { const out = idx.map(() => 0); (rows || []).forEach(x => { if (inR(x[0], r)) idx.forEach((c, i) => out[i] += x[c] || 0); }); return out; }
+function seriesRows(rows, r, g, col) { const bs = buckets(r, g), ix = Object.fromEntries(bs.map((b, i) => [b, i])), v = bs.map(() => 0); (rows || []).forEach(x => { if (inR(x[0], r)) { const b = bucketOf(x[0], g); if (b in ix) v[ix[b]] += x[col] || 0; } }); return { bs, v }; }
+function orderSeries(r, g, fn) { const bs = buckets(r, g), ix = Object.fromEntries(bs.map((b, i) => [b, i])), v = bs.map(() => 0); ordersIn(r).forEach(o => { const b = bucketOf(oDay(o), g); if (b in ix) v[ix[b]] += fn(o); }); return { bs, v }; }
+function abOpen() { if (!S.d || !S.d.ab) return []; const later = {}; allOrders().forEach(o => { if (o.cu) later[o.cu.id] = Math.max(later[o.cu.id] || 0, Date.parse(o.t)); }); return S.d.ab.filter(a => !a.done && !(a.cu && (later[a.cu.id] > Date.parse(a.t) || (a.cu.lo && Date.parse(a.cu.lo) > Date.parse(a.t))))); }
+const median = a => { if (!a.length) return null; const s = a.slice().sort((x, y) => x - y); return s[Math.floor(s.length / 2)]; };
+const hrsTxt = h => h == null ? "—" : h < 24 ? Math.round(h) + " ساعة" : (h / 24).toFixed(1) + " يوم";
+
+/* ---------- OVERVIEW ---------- */
+function renderHero() {
+  const el = $("#hero"), r = range(), rp = range(S.period, true), g = grain();
+  $("#hero-sub").textContent = periodWord();
+  if (!S.d) { el.innerHTML = loadingBox(true); return; }
+  if (detailMode() && S.d.orders) {
+    const cur = ordersIn(r), prev = ordersCover(rp) ? ordersIn(rp) : null;
+    const v = cur.reduce((s, o) => s + recv(o), 0), dn = cur.filter(o => recv(o) > 0), upV = dn.filter(unpaid).reduce((s, o) => s + o.cur, 0);
+    const pv = prev ? prev.reduce((s, o) => s + recv(o), 0) : null;
+    el.innerHTML = `<div class="lab"><i></i>طلبات اتسلّمت للزبون</div>
+      <div class="big">${cu(v)}<small>ج.م</small></div>
+      <div class="row">${pv != null ? deltaHtml(v, pv) + "<span>عن الفترة اللي قبلها</span>" : ""}</div>
+      <div class="spark-lg">${spark(orderSeries(r, g, recv).v, "--key", 84)}</div>
+      <div class="trio"><div><span>طلبات مستلمة</span><b>${cu(dn.length, "int")}</b></div><div><span>متوسط الطلب المستلم</span><b>${cu(dn.length ? v / dn.length : 0)}</b></div><div><span>بانتظار التحصيل</span><b style="color:${upV ? "var(--warn)" : "inherit"}">${cu(upV)}</b></div></div>`;
+  } else if (S.d.hs) {
+    const [o, gr, rv, ne] = sumRows(S.d.hs, r, [1, 2, 3, 4]), pv = rp ? sumRows(S.d.hs, rp, [1, 2, 3, 4]) : null;
+    el.innerHTML = `<div class="lab"><i></i>صافي المبيعات (قيمة الطلبات ناقص الملغي)</div><div class="big">${cu(ne)}<small>ج.م</small></div>
+      <div class="row">${pv ? deltaHtml(ne, pv[3]) + "<span>عن الفترة اللي قبلها</span>" : ""}</div>
+      <div class="spark-lg">${spark(seriesRows(S.d.hs, r, g, 4).v, "--key", 84)}</div>
+      <div class="trio"><div><span>كل الطلبات</span><b>${cu(o, "int")}</b></div><div><span>قيمة الطلبات</span><b>${cu(gr)}</b></div><div><span>الملغي والمسترجع</span><b style="color:var(--bad)">${cu(-rv)}</b></div></div>
+      <p class="note">«المستلمة» بالتفصيل متاحة لآخر ٦٠ يوم.</p>`;
+  } else need(el, "orders", true);
+}
+function renderKpis() {
+  const el = $("#kpis"); if (!S.d) { el.innerHTML = Array(6).fill('<div class="kpi"><span class="k">&nbsp;</span><div class="skel" style="height:24px;width:60%"></div></div>').join(""); return; }
+  const r = range(), rp = range(S.period, true), g = grain(), t = [];
+  if (detailMode() && S.d.orders) {
+    const cur = ordersIn(r), prev = ordersCover(rp) ? ordersIn(rp) : null, canc = cur.filter(o => status(o) === "cancelled").length, pc = prev ? prev.filter(o => status(o) === "cancelled").length : 0, op = cur.filter(o => openAmt(o) > 0);
+    t.push({ k: "الطلبات", v: cu(cur.length, "int"), d: (prev ? deltaHtml(cur.length, prev.length) : "") + "<span>كل الطلبات</span>", s: spark(orderSeries(r, g, () => 1).v) });
+    t.push({ k: "قيد التنفيذ", v: cu(op.reduce((s, o) => s + o.cur, 0)), u: "ج.م", d: `<span>${op.length} طلب لسه ما اتسلّم</span>` });
+    t.push({ k: "نسبة الإلغاء", v: cu(cur.length ? canc / cur.length : 0, "pct", 0), d: (prev && prev.length && cur.length ? deltaHtml(canc / cur.length, pc / prev.length, true) : "") + `<span>${canc} طلب ملغي</span>`, s: spark(orderSeries(r, g, o => status(o) === "cancelled" ? 1 : 0).v, "--bad") });
+  } else if (S.d.hs) {
+    const [o, gr, rv] = sumRows(S.d.hs, r, [1, 2, 3]), pv = rp ? sumRows(S.d.hs, rp, [1, 2, 3]) : null;
+    t.push({ k: "الطلبات", v: cu(o, "int"), d: (pv ? deltaHtml(o, pv[0]) : "") + "<span>كل الطلبات</span>", s: spark(seriesRows(S.d.hs, r, g, 1).v) });
+    t.push({ k: "متوسط الطلب", v: cu(o ? gr / o : 0), u: "ج.م", d: "<span>قبل الإلغاء</span>" });
+    t.push({ k: "نسبة الإلغاء (بالقيمة)", v: cu(gr ? -rv / gr : 0, "pct", 0), d: "<span>من قيمة الطلبات</span>" });
+  }
+  if (S.d.hdev) {
+    const [s, , , c] = sumRows(S.d.hdev, r, [2, 3, 4, 5]), pv = rp ? sumRows(S.d.hdev, rp, [2, 3, 4, 5]) : null;
+    t.push({ k: "الزيارات", v: cu(s, "int"), d: (pv ? deltaHtml(s, pv[0]) : "") + "<span>عن الفترة اللي قبلها</span>", s: spark(seriesRows(S.d.hdev, r, g, 2).v) });
+    t.push({ k: "نسبة الشراء", v: cu(s ? c / s : 0, "pct", 2), d: (pv && pv[0] && s ? deltaHtml(c / s, pv[3] / pv[0]) : "") + `<span>${c} زيارة انتهت بطلب</span>` });
+  }
+  const ab = abOpen().filter(a => inR(dayKey(new Date(a.t)), r));
+  if (S.d.ab) t.push({ k: "سلّات متروكة", v: cu(ab.length, "int"), d: `<span>${money(ab.reduce((s, a) => s + a.tot, 0))} ج.م ضايعة</span>` });
+  el.innerHTML = t.map(x => `<div class="kpi"><span class="k">${x.k}</span><span class="v">${x.v}${x.u ? `<small>${x.u}</small>` : ""}</span><div class="d">${x.d || ""}</div>${x.s || ""}</div>`).join("");
+}
+function renderSales() {
+  const el = $("#sales"), g = grain(), r = range(), byN = S.salesMode === "n";
+  if (detailMode()) {
+    $("#sales-sub").textContent = (g === "day" ? "حسب يوم الطلب" : g === "week" ? "حسب الأسبوع" : "حسب الشهر") + " · " + periodWord();
+    if (!need(el, "orders", true)) return;
+    const grp = o => { const s = status(o); return s === "delivered" ? "d" : (s === "cancelled" || s === "refunded") ? "x" : "o"; };
+    const val = k => o => grp(o) === k ? (byN ? 1 : (k === "x" ? o.tot : o.cur)) : 0;
+    const a = orderSeries(r, g, val("d")), b = orderSeries(r, g, val("o")), c = orderSeries(r, g, val("x"));
+    if (![...a.v, ...b.v, ...c.v].some(Boolean)) { el.innerHTML = `<div class="empty">لا توجد طلبات في هذه الفترة.</div>`; return; }
+    el.innerHTML = `<div class="legend" style="margin-bottom:10px"><span><i class="sw" style="background:var(--key)"></i>تم التسليم</span><span><i class="sw" style="background:var(--series-2)"></i>قيد التنفيذ</span><span><i class="sw" style="background:var(--bad)"></i>ملغي أو مسترجع</span></div><div class="chart"></div>`;
+    barChart(el.querySelector(".chart"), a.bs.map(k => bLabel(k, g)), [{ name: "تم التسليم", v: "--key", values: a.v }, { name: "قيد التنفيذ", v: "--series-2", values: b.v }, { name: "ملغي", v: "--bad", values: c.v }], "stack", v => byN ? nf.format(v) : money(v) + " ج.م");
+  } else {
+    $("#sales-sub").textContent = (g === "week" ? "حسب الأسبوع" : "حسب الشهر") + " · الإلغاء يُحسب يوم الإلغاء";
+    if (!need(el, "hs", true)) return;
+    const gr = seriesRows(S.d.hs, r, g, byN ? 1 : 2), rv = seriesRows(S.d.hs, r, g, 3), ne = seriesRows(S.d.hs, r, g, 4);
+    el.innerHTML = `<div class="legend" style="margin-bottom:10px"><span><i class="sw" style="background:var(--accent)"></i>${byN ? "عدد الطلبات" : "قيمة الطلبات"}</span>${byN ? "" : '<span><i class="sw" style="background:var(--bad)"></i>ملغي ومسترجع</span>'}</div><div class="chart"></div>`;
+    barChart(el.querySelector(".chart"), gr.bs.map(k => bLabel(k, g)), byN ? [{ name: "طلبات", v: "--accent", values: gr.v }] : [{ name: "قيمة الطلبات", v: "--accent", values: gr.v }, { name: "ملغي ومسترجع", v: "--bad", values: rv.v.map(x => -x) }], "group", v => byN ? nf.format(v) : money(v) + " ج.م", byN ? null : i => `<div class="l"><span>الصافي</span><b>${money(ne.v[i])}</b></div>`);
+  }
+}
+function renderStatus() {
+  const el = $("#status"); $("#status-sub").textContent = detailWord();
+  if (!need(el, "orders")) return;
+  const list = pOrders(); if (!list.length) { el.innerHTML = `<div class="empty">لا توجد طلبات في هذه الفترة.</div>`; return; }
+  const by = {}; ST_ORDER.forEach(s => by[s] = { n: 0, v: 0 }); list.forEach(o => { const s = status(o); by[s].n++; by[s].v += shownAmt(o); });
+  const now = Date.now(), pend = list.filter(o => ["pending", "paid"].includes(status(o))), old = pend.filter(o => (now - Date.parse(o.t)) / DAY >= 3).length;
+  const dl = list.filter(o => status(o) === "delivered"), ff = median(dl.filter(o => o.ft).map(o => (Date.parse(o.ft) - Date.parse(o.t)) / 36e5).filter(h => h >= 0));
+  const coll = dl.length ? dl.filter(o => !unpaid(o)).length / dl.length : null, up = list.filter(unpaid);
+  el.innerHTML = `<div class="stack" role="img" aria-label="توزيع الحالات">${ST_ORDER.filter(s => by[s].n).map((s, i) => `<span style="flex:${by[s].n};background:var(${ST_VAR[s]});animation-delay:${i * 60}ms" title="${ST_LABEL[s]}: ${by[s].n}"></span>`).join("")}</div>
+  <div class="bk"><span class="hd">الحالة</span><span class="hd" style="text-align:end">طلبات</span><span class="hd" style="text-align:end">القيمة</span>
+  ${ST_ORDER.map(s => `<span class="st ${s}"><i></i>${ST_LABEL[s]}</span><span class="n">${by[s].n}<span style="color:var(--muted);font-size:11px"> · ${pct(by[s].n / list.length, 0)}</span></span><span class="m">${money(by[s].v)}</span>`).join("")}</div>
+  <div class="tiles"><div><b>${hrsTxt(ff)}</b><span>وقت التجهيز (الوسيط)</span></div><div><b>${coll == null ? "—" : pct(coll, 0)}</b><span>نسبة التحصيل</span></div><div class="${old ? "hot" : ""}"><b>${old}</b><span>معلّق أكثر من ٣ أيام</span></div></div>
+  ${up.length ? `<p class="note">${up.length} طلب متسلّم والدفع لسه «Payment pending» (${money(up.reduce((s, o) => s + o.cur, 0))} ج.م). لما يوصل المبلغ علّموه مدفوع.</p>` : ""}`;
+}
+function renderFunnel() {
+  const el = $("#funnel"); if (!need(el, "hdev")) return;
+  const [s, c, k, o] = sumRows(S.d.hdev, range(), [2, 3, 4, 5]);
+  const steps = [["زاروا المتجر", s], ["أضافوا للسلة", c], ["وصلوا لصفحة الدفع", k], ["كمّلوا الطلب", o]], max = Math.max(1, s), op = [1, .8, .62, .46];
+  el.innerHTML = `<div class="fun">${steps.map(([l, v], i) => `<div class="row"><span>${l}</span><div class="track"><div class="fill" style="width:${Math.max(.8, v / max * 100)}%;opacity:${op[i]};animation-delay:${i * 90}ms"></div></div><span class="val">${cu(v, "int")}<small>${i ? pct(v / max, v / max < .1 ? 1 : 0) + " من الزوار" : periodWord()}</small></span></div>`).join("")}</div>
+  <p class="note">${c ? `من اللي أضافوا للسلة، ${pct(o / c, 0)} كمّلوا الطلب. ` : ""}${k > o ? `${nf.format(k - o)} زيارة وصلت للدفع ولم تكمل.` : ""}</p>`;
+}
+function renderAttention() {
+  const el = $("#attention"); if (!need(el, "orders")) return;
+  const now = Date.now(), items = [], it = (cls, main, meta, act) => `<div class="it ${cls}"><span class="flag"></span><div><div class="cm">${main}</div><div class="meta">${meta}</div></div>${act}</div>`;
+  const stale = allOrders().filter(o => status(o) === "pending" && now - Date.parse(o.t) > 2 * DAY).sort((a, b) => Date.parse(a.t) - Date.parse(b.t));
+  const ab7 = abOpen().filter(a => now - Date.parse(a.t) < 7 * DAY && !S.contacted[a.id]);
+  const unpaidD = allOrders().filter(o => unpaid(o) && now - Date.parse(o.t) > 3 * DAY);
+  if (unpaidD.length) items.push(it("bad", `${unpaidD.length} طلب متسلّم والدفع لسه معلّق`, `${money(unpaidD.reduce((s, o) => s + o.cur, 0))} ج.م · تأكدوا من التحصيل وعلّموها مدفوعة`, `<button type="button" class="linkish" data-go="orders" data-filter="unpaid">عرض</button>`));
+  if (ab7.length) items.push(it("", `${ab7.length} سلّة متروكة هذا الأسبوع بدون تواصل`, `قيمتها ${money(ab7.reduce((s, a) => s + a.tot, 0))} ج.م`, `<button type="button" class="linkish" data-go="customers">عرض</button>`));
+  stale.slice(0, 4).forEach(o => items.push(it(now - Date.parse(o.t) > 7 * DAY ? "bad" : "", `<span class="n">${esc(o.n)}</span> · ${esc(o.cu ? o.cu.nm : "زبون")}`, `معلّق من ${Math.floor((now - Date.parse(o.t)) / DAY)} يوم · ${money(o.cur)} ج.م · ${gateName(o)}`, `<a class="linkish" href="${adminOrder(o.id)}" target="_blank" rel="noopener">افتح ↗</a>`)));
+  if (stale.length > 4) items.push(it("", `و${stale.length - 4} طلبات معلّقة أخرى`, "بانتظار التأكيد أو الشحن", `<button type="button" class="linkish" data-go="orders" data-filter="pending">عرض الكل</button>`));
+  el.innerHTML = items.length ? `<div class="att">${items.join("")}</div>` : `<div class="empty">لا يوجد شيء معلّق.</div>`;
+}
+function renderMonths() {
+  const el = $("#months");
+  if (!S.d) { el.innerHTML = `<tbody><tr><td>${loadingBox()}</td></tr></tbody>`; return; }
+  const r = S.period === "all" ? range() : [addDays(today(), -365), today()], useO = !!S.d.orders, rows = [];
+  buckets(r, "month").reverse().forEach(m => { const mr = [m, addDays(addMonth(m), -1)];
+    const cover = useO && ordersCover(mr), list = cover ? ordersIn(mr) : [], hs = sumRows(S.d.hs, mr, [1, 2, 3, 4]), sv = sumRows(S.d.hdev, mr, [2, 5]);
+    const n = cover ? list.length : hs[0], dn = list.filter(o => recv(o) > 0);
+    if (!n && !sv[0]) return;
+    rows.push({ m, n, dn: cover ? dn.length : null, rv: cover ? list.reduce((s, o) => s + recv(o), 0) : null, cn: cover ? list.filter(o => status(o) === "cancelled").length : null, net: hs[3], s: sv[0], o: sv[1] }); });
+  if (!rows.length) { el.innerHTML = `<tbody><tr><td class="empty">لا توجد بيانات.</td></tr></tbody>`; return; }
+  const mx = Math.max(1, ...rows.map(x => x.rv ?? x.net)), tot = k => rows.reduce((s, x) => s + (x[k] || 0), 0);
+  el.innerHTML = `<thead><tr><th>الشهر</th><th class="r">طلبات</th><th class="r">مستلمة</th><th class="r">المبيعات المستلمة</th><th class="r">ملغي</th><th class="r">نسبة الإلغاء</th><th class="r">متوسط المستلم</th><th class="r">زيارات</th><th class="r">نسبة الشراء</th></tr></thead><tbody>${rows.map(x => { const cr = x.cn != null && x.n ? x.cn / x.n : null; return `<tr><td class="inbar nw" style="min-width:150px"><div class="bar" style="width:${Math.max(0, x.rv ?? x.net) / mx * 100}%;background:var(--accent-wash)"></div><span class="cm">${fMonthL.format(kDate(x.m))}</span></td><td class="r n">${x.n}</td><td class="r n">${x.dn ?? "—"}</td><td class="r n">${x.rv != null ? money(x.rv) : `<span class="cs">صافي ${money(x.net)}</span>`}</td><td class="r n">${x.cn ?? "—"}</td><td class="r n rate ${cr != null && cr >= .5 ? "hi" : ""}">${cr == null ? "—" : pct(cr, 0)}</td><td class="r n">${x.dn ? money(x.rv / x.dn) : "—"}</td><td class="r n">${x.s ? nf.format(x.s) : "—"}</td><td class="r n">${x.s ? pct(x.o / x.s, 2) : "—"}</td></tr>`; }).join("")}</tbody><tfoot><tr><td>المجموع</td><td class="r n">${tot("n")}</td><td class="r n">${tot("dn")}</td><td class="r n">${money(tot("rv"))}</td><td class="r n">${tot("cn")}</td><td class="r n">${tot("n") ? pct(tot("cn") / tot("n"), 0) : "—"}</td><td class="r n">${tot("dn") ? money(tot("rv") / tot("dn")) : "—"}</td><td class="r n">${nf.format(tot("s"))}</td><td class="r n">${tot("s") ? pct(tot("o") / tot("s"), 2) : "—"}</td></tr></tfoot>`;
+}
+function prodAgg(r) { const m = {}; (S.d.hprod || []).forEach(x => { if (!inR(x[0], r)) return; const k = x[1] || "منتج محذوف"; const b = m[k] || (m[k] = { t: k, o: 0, g: 0, n: 0 }); b.o += x[2]; b.g += x[3]; b.n += x[4]; }); return Object.values(m).filter(b => b.g > 0 || b.o > 0).sort((a, b) => b.g - a.g); }
+function prodAggOrders(list) { const m = {}; list.forEach(o => { const st = status(o); o.li.forEach(l => { const b = m[l[0]] || (m[l[0]] = { t: l[0], s: l[2], o: new Set(), u: 0, g: 0, rv: 0, cn: 0 }); b.o.add(o.id); b.g += l[3]; if (st === "cancelled" || st === "refunded") b.cn += l[1]; else { const q = l[4] ?? l[1]; b.u += q; if (st === "delivered" && l[1]) b.rv += l[3] * q / l[1]; } }); }); return Object.values(m).map(b => ({ ...b, o: b.o.size })).sort((a, b) => b.g - a.g); }
+function prodTable(rows, limit) {
+  const max = Math.max(1, ...rows.map(r => r.g)), sh = rows.slice(0, limit);
+  return `<div class="tw"><table><thead><tr><th>المنتج</th><th>الحالة</th><th class="r">طلبات</th><th class="r">قيمة الطلبات</th><th class="r">المستلم</th><th class="r">قطع ملغية</th></tr></thead><tbody>${sh.map(r => `<tr><td class="inbar"><div class="bar" style="width:${r.g / max * 100}%"></div><span class="prod ltr" style="display:block;text-align:start" title="${esc(r.t)}">${esc(r.t)}</span></td><td>${condTag(condOf(r.s))}</td><td class="r n">${r.o}</td><td class="r n">${money(r.g)}</td><td class="r n">${money(r.rv)}</td><td class="r n ${r.cn ? "rate hi" : ""}">${r.cn || "—"}</td></tr>`).join("")}</tbody><tfoot><tr><td colspan="2">المجموع · ${sh.length} منتج</td><td class="r n">${sh.reduce((s, r) => s + r.o, 0)}</td><td class="r n">${money(sh.reduce((s, r) => s + r.g, 0))}</td><td class="r n">${money(sh.reduce((s, r) => s + r.rv, 0))}</td><td class="r n">${sh.reduce((s, r) => s + r.cn, 0)}</td></tr></tfoot></table></div>`;
+}
+function prodTableQL(rows, limit) { const max = Math.max(1, ...rows.map(r => r.g)); return `<div class="tw"><table><thead><tr><th>المنتج</th><th class="r">طلبات</th><th class="r">قيمة الطلبات</th><th class="r">بعد الإلغاء</th></tr></thead><tbody>${rows.slice(0, limit).map(r => `<tr><td class="inbar"><div class="bar" style="width:${r.g / max * 100}%"></div><span class="prod ltr" style="display:block;text-align:start">${esc(r.t)}</span></td><td class="r n">${r.o}</td><td class="r n">${money(r.g)}</td><td class="r n">${money(Math.max(0, r.n))}</td></tr>`).join("")}</tbody></table></div>`; }
+function renderProductsTop() {
+  const el = $("#products-top");
+  if (detailMode()) { if (!need(el, "orders")) return; const rows = prodAggOrders(pOrders()); el.innerHTML = rows.length ? prodTable(rows, 8) : `<div class="empty">لا توجد طلبات في هذه الفترة.</div>`; }
+  else { if (!need(el, "hprod")) return; const rows = prodAgg(range()); el.innerHTML = rows.length ? prodTableQL(rows, 8) : `<div class="empty">لا توجد مبيعات.</div>`; }
+}
+function groupTable(list, keyFn) { const m = {}; list.forEach(o => { const k = keyFn(o); const b = m[k.k] || (m[k.k] = { n: k.n, o: 0, c: 0, v: 0, lost: 0, d: 0 }); b.o++; if (status(o) === "cancelled") { b.c++; b.lost += o.tot; } b.v += recv(o); if (recv(o) > 0) b.d++; }); return Object.values(m).sort((a, b) => b.o - a.o); }
+function renderOrderSources() {
+  const el = $("#order-sources"); if (!need(el, "orders")) return;
+  const rows = groupTable(pOrders(), srcOf); if (!rows.length) { el.innerHTML = `<div class="empty">لا توجد طلبات في هذه الفترة.</div>`; return; }
+  const max = Math.max(...rows.map(r => r.o));
+  el.innerHTML = `<div class="tw"><table><thead><tr><th>المصدر</th><th class="r">طلبات</th><th class="r">مستلمة</th><th class="r">المبيعات المستلمة</th></tr></thead><tbody>${rows.map(r => `<tr><td class="inbar"><div class="bar" style="width:${r.o / max * 100}%"></div><span>${esc(r.n)}</span></td><td class="r n">${r.o}</td><td class="r n">${r.d}</td><td class="r n">${money(r.v)}</td></tr>`).join("")}</tbody><tfoot><tr><td>المجموع</td><td class="r n">${rows.reduce((s, r) => s + r.o, 0)}</td><td class="r n">${rows.reduce((s, r) => s + r.d, 0)}</td><td class="r n">${money(rows.reduce((s, r) => s + r.v, 0))}</td></tr></tfoot></table></div>`;
+}
+function renderPayments() {
+  const el = $("#payments"); if (!need(el, "orders")) return;
+  const rows = groupTable(pOrders(), o => { const g = gateName(o); return { k: g, n: g }; }); if (!rows.length) { el.innerHTML = `<div class="empty">لا توجد طلبات.</div>`; return; }
+  const tot = rows.reduce((s, r) => s + r.v, 0) || 1;
+  el.innerHTML = `<div class="tw"><table><thead><tr><th>طريقة الدفع</th><th class="r">طلبات</th><th class="r">المبيعات المستلمة</th><th class="r">الحصة</th><th class="r">نسبة الإلغاء</th></tr></thead><tbody>${rows.map(r => { const cr = r.o ? r.c / r.o : 0; return `<tr><td class="inbar"><div class="bar" style="width:${r.v / tot * 100}%;background:var(--accent-wash)"></div><span>${esc(r.n)}</span></td><td class="r n">${r.o}</td><td class="r n">${money(r.v)}</td><td class="r n">${pct(r.v / tot, 0)}</td><td class="r n rate ${cr >= .5 ? "hi" : cr < .2 ? "ok" : ""}">${pct(cr, 0)}</td></tr>`; }).join("")}</tbody></table></div>`;
+}
+const fDow = new Intl.DateTimeFormat("en-US", { timeZone: TZ, weekday: "short" });
+const DOWMAP = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
+function renderWeekdays() {
+  const el = $("#weekdays"); if (!need(el, "orders")) return;
+  const list = pOrders(), w = DOW.map(() => ({ n: 0, v: 0 })); list.forEach(o => { const d = DOWMAP[fDow.format(new Date(o.t))]; if (d == null) return; w[d].n++; w[d].v += recv(o); });
+  const mx = Math.max(1, ...w.map(x => x.n));
+  el.innerHTML = list.length ? `<div class="blist">${DOW_ROWS.map((d, i) => `<div class="row"><div><div class="lab"><span>${DOW[d]}</span><span class="n" style="color:var(--muted)">${money(w[d].v)} ج.م مستلمة</span></div><div class="track"><div class="fill" style="width:${w[d].n / mx * 100}%;animation-delay:${i * 50}ms"></div></div></div><span class="val">${w[d].n} طلب</span></div>`).join("")}</div>` : `<div class="empty">لا توجد طلبات.</div>`;
+}
+
+/* ---------- ORDERS ---------- */
+function orderMatches(o, q) { return !q || [o.n, o.cu && o.cu.nm, o.cu && o.cu.em, o.ad && o.ad.ci, o.ad && o.ad.pr, ...o.li.map(l => l[0] + " " + l[2])].join(" ").toLowerCase().includes(q); }
+function filteredOrders() { const q = S.q.trim().toLowerCase(); return pOrders().filter(o => (S.filter === "all" || status(o) === S.filter || (S.filter === "unpaid" && unpaid(o))) && orderMatches(o, q)); }
+function renderOrders() {
+  const table = $("#otable"), fl = $("#ofilters"), sb = $("#osum");
+  $("#orders-sub").textContent = detailWord();
+  if (!need(table, "orders")) { fl.innerHTML = ""; sb.innerHTML = ""; return; }
+  const all = pOrders(), counts = { all: all.length, unpaid: all.filter(unpaid).length }; ST_ORDER.forEach(s => counts[s] = 0); all.forEach(o => counts[status(o)]++);
+  if (!$("#oq")) fl.innerHTML = `<div id="ochips" style="display:contents"></div><input class="search" id="oq" type="search" placeholder="ابحث برقم الطلب أو الاسم أو المنتج أو الكود">`;
+  const chips = [["all", "الكل"], ...ST_ORDER.map(s => [s, ST_LABEL[s]]), ["unpaid", "متسلّم والدفع معلّق"]];
+  $("#ochips").innerHTML = chips.filter(([k]) => k === "all" || counts[k]).map(([k, l]) => `<button type="button" class="chip" data-f="${k}" aria-pressed="${S.filter === k}">${k === "all" ? "" : `<span class="st ${k === "unpaid" ? "pending" : k}"><i></i></span>`}${l}<span class="n">${counts[k]}</span></button>`).join("");
+  $("#export").hidden = !downloads || !all.length;
+  const rows = filteredOrders();
+  const T = { n: rows.length, u: rows.reduce((s, o) => s + liNow(o).reduce((a, l) => a + qNow(o, l), 0), 0), v: rows.reduce((s, o) => s + o.cur, 0), rv: rows.reduce((s, o) => s + recv(o), 0), op: rows.reduce((s, o) => s + openAmt(o), 0), cn: rows.filter(o => status(o) === "cancelled").reduce((s, o) => s + o.tot, 0), up: rows.filter(unpaid).reduce((s, o) => s + o.cur, 0) };
+  sb.innerHTML = `<div><span>عدد الطلبات</span><b>${cu(T.n, "int")}</b></div><div><span>عدد القطع</span><b>${cu(T.u, "int")}</b></div><div><span>المبيعات المستلمة</span><b>${cu(T.rv)}</b></div><div><span>قيد التنفيذ</span><b>${cu(T.op)}</b></div><div><span>بانتظار التحصيل</span><b style="color:${T.up ? "var(--warn)" : "inherit"}">${cu(T.up)}</b></div><div><span>قيمة الملغي</span><b style="color:${T.cn ? "var(--bad)" : "inherit"}">${cu(T.cn)}</b></div>`;
+  if (!rows.length) { table.innerHTML = `<tbody><tr><td class="empty">لا توجد طلبات بهذا الفلتر.</td></tr></tbody>`; return; }
+  const now = Date.now();
+  table.innerHTML = `<thead><tr><th>الطلب</th><th>الزبون</th><th>المنتجات</th><th class="r">المبلغ</th><th>الدفع</th><th>الحالة</th><th>المصدر</th></tr></thead><tbody>${rows.map(o => {
+    const s = status(o), src = srcOf(o), open = S.open === o.id, j = o.j, ln = liNow(o), units = ln.reduce((a, l) => a + qNow(o, l), 0), ph = phoneOf(o.ad && o.ad.ph, o.cu && o.cu.ph);
+    return `<tr class="row${open ? " open" : ""}" data-id="${esc(o.id)}" tabindex="0" aria-expanded="${open}">
+      <td class="nw"><div class="cm n">${esc(o.n)}</div><div class="cs">${fDayTime.format(new Date(o.t))}</div></td>
+      <td><div class="cm">${esc(o.cu ? o.cu.nm : "—")}</div><div class="cs">${esc(o.ad ? (o.ad.ci || o.ad.pr) : "")}${o.cu && o.cu.no > 1 ? ` · زبون متكرر (${o.cu.no})` : ""}</div></td>
+      <td>${ln.length ? `<div class="prod ltr" style="text-align:start">${esc(ln[0][0])}</div><div class="cs">${units} قطعة${ln.length > 1 ? ` · ${ln.length} منتجات` : ""} · ${condTag(condOf(ln[0][2]))}</div>` : `<div class="cs">المنتجات اتشالت من الطلب</div>`}</td>
+      <td class="r nw n">${s === "cancelled" ? `<span style="color:var(--muted);text-decoration:line-through">${money(o.tot)}</span>` : money(o.cur)}${o.cur !== o.tot && s !== "cancelled" ? `<div class="cs">كان ${money(o.tot)}</div>` : ""}</td>
+      <td class="nw">${gateName(o)}</td>
+      <td><span class="st ${s}"><i></i>${ST_LABEL[s]}</span><div class="cs" ${unpaid(o) ? 'style="color:var(--warn)"' : ""}>${s === "cancelled" ? (REASON[o.cr] || "") : s === "pending" ? "منذ " + Math.floor((now - Date.parse(o.t)) / DAY) + " يوم" : unpaid(o) ? "الدفع لسه معلّق" : o.fs === "PARTIALLY_REFUNDED" ? "مسترجع جزئياً" : ""}</div></td>
+      <td class="nw">${esc(src.n)}${j && j.d != null ? `<div class="cs">قرّر خلال ${j.d} يوم</div>` : ""}</td></tr>
+      ${open ? `<tr class="detail"><td colspan="7"><div class="dgrid">
+        <div><h4>المنتجات</h4><ul class="items">${o.li.map(l => `<li${s !== "cancelled" && qNow(o, l) === 0 ? ' style="text-decoration:line-through;color:var(--muted)"' : ""}><span class="ltr">${l[1]} × ${esc(l[0])}</span> <span class="cs n">${money(l[3])}</span><div class="cs ltr" style="text-align:start">${esc(l[2])}</div></li>`).join("")}</ul></div>
+        <div><h4>رحلة الزبون</h4>${j ? `<p>أول زيارة: ${esc(src.n)}${j.at ? " · " + fDayTime.format(new Date(j.at)) : ""}</p><p class="cs ltr" style="text-align:start">${esc(pathOf(j.lp))}</p>${j.ls ? `<p style="margin-top:6px">آخر زيارة قبل الطلب: ${esc(j.ls)}</p><p class="cs ltr" style="text-align:start">${esc(pathOf(j.llp))}</p>` : ""}` : `<p class="cs">لم يسجّل Shopify مصدراً لهذا الطلب.</p>`}</div>
+        <div><h4>الزبون</h4><p>${esc(o.cu ? o.cu.nm : "—")}</p><p class="cs ltr" style="text-align:start">${esc([ph, o.cu && o.cu.em].filter(Boolean).join(" · "))}</p><p class="cs">${esc([o.ad && o.ad.ci, o.ad && o.ad.pr].filter(Boolean).join("، "))} · لغة الطلب ${/^ar/.test(o.loc) ? "عربي" : "إنجليزي"}</p></div>
+        <div><h4>التنفيذ</h4><p>${o.ft ? "اتجهّز بعد " + hrsTxt((Date.parse(o.ft) - Date.parse(o.t)) / 36e5) : "لسه ما اتجهّز"}</p><p class="cs">الدفع: ${esc(o.fs)} · الشحن: ${esc(o.ff)}</p><p><a href="${adminOrder(o.id)}" target="_blank" rel="noopener">افتح الطلب في Shopify ↗</a></p></div>
+      </div></td></tr>` : ""}`;
+  }).join("")}</tbody><tfoot><tr><td colspan="3">المجموع · ${T.n} طلب · ${T.u} قطعة</td><td class="r n nw">${money(T.v)}</td><td colspan="3" class="cs" style="font-weight:500">مستلم ${money(T.rv)} · قيد التنفيذ ${money(T.op)} · ملغي ${money(T.cn)}</td></tr></tfoot>`;
+}
+async function exportCsv() {
+  if (!downloads) return;
+  const rows = filteredOrders(), cell = v => { const s = String(v ?? ""); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  const head = ["رقم الطلب", "التاريخ", "الزبون", "الهاتف", "الإيميل", "المدينة", "المحافظة", "المنتجات", "الأكواد", "المبلغ الحالي", "المبلغ الأصلي", "الدفع", "الحالة", "الدفع معلّق", "سبب الإلغاء", "المصدر"];
+  const lines = rows.map(o => [o.n, new Date(o.t).toLocaleString("en-GB", { timeZone: TZ }), o.cu && o.cu.nm, phoneOf(o.ad && o.ad.ph, o.cu && o.cu.ph), o.cu && o.cu.em, o.ad && o.ad.ci, o.ad && o.ad.pr, liNow(o).map(l => qNow(o, l) + "x " + l[0]).join(" + "), liNow(o).map(l => l[2]).join(" "), o.cur, o.tot, gateName(o), ST_LABEL[status(o)], unpaid(o) ? "نعم" : "", o.c ? (REASON[o.cr] || "") : "", srcOf(o).n].map(cell).join(","));
+  const tot = ["المجموع", "", "", "", "", "", "", "", "", rows.reduce((s, o) => s + o.cur, 0), rows.reduce((s, o) => s + o.tot, 0)].map(cell).join(",");
+  try { await downloads.save({ filename: `squadrig-orders-${today()}.csv`, data: "﻿" + [head.join(","), ...lines, tot].join("\n") }); } catch (e) { if (e && e.code !== "cancelled") toast("تعذّر تجهيز الملف."); }
+}
+
+/* ---------- CANCELLATIONS ---------- */
+function rateTable(rows, label) {
+  if (!rows.length) return `<div class="empty">لا توجد طلبات في هذه الفترة.</div>`;
+  const O = rows.reduce((s, r) => s + r.o, 0), C = rows.reduce((s, r) => s + r.c, 0);
+  return `<div class="tw"><table><thead><tr><th>${label}</th><th class="r">طلبات</th><th class="r">ملغي</th><th class="r">نسبة الإلغاء</th><th class="r">قيمة الملغي</th></tr></thead><tbody>${rows.map(r => { const cr = r.o ? r.c / r.o : 0; return `<tr><td class="inbar"><div class="bar" style="width:${cr * 100}%;background:color-mix(in srgb,var(--bad) 14%,transparent)"></div><span>${esc(r.n)}</span></td><td class="r n">${r.o}</td><td class="r n">${r.c}</td><td class="r n rate ${cr >= .5 ? "hi" : cr < .2 ? "ok" : ""}">${pct(cr, 0)}</td><td class="r n">${money(r.lost)}</td></tr>`; }).join("")}</tbody><tfoot><tr><td>المجموع</td><td class="r n">${O}</td><td class="r n">${C}</td><td class="r n">${pct(C / Math.max(1, O), 0)}</td><td class="r n">${money(rows.reduce((s, r) => s + r.lost, 0))}</td></tr></tfoot></table></div>`;
+}
+function renderCancel() {
+  const k = $("#xkpis");
+  if (!S.d || !S.d.orders) { ["#x-pay", "#x-src", "#x-cat", "#x-why"].forEach(s => need($(s), "orders")); k.innerHTML = ""; return; }
+  const list = pOrders(), can = list.filter(o => status(o) === "cancelled"), hrs = can.map(o => (Date.parse(o.c) - Date.parse(o.t)) / 36e5).filter(h => h >= 0), med = median(hrs), byCust = can.filter(o => o.cr === "CUSTOMER").length;
+  const tile = (kk, v, d) => `<div class="kpi"><span class="k">${kk}</span><span class="v">${v}</span><div class="d"><span>${d}</span></div></div>`;
+  k.innerHTML = tile("نسبة الإلغاء", cu(list.length ? can.length / list.length : 0, "pct", 0), `${can.length} من ${list.length} طلب · ${detailWord()}`) + tile("قيمة الطلبات الملغية", cu(can.reduce((s, o) => s + o.tot, 0)) + "<small>ج.م</small>", "مبيعات ضاعت") + tile("وقت الإلغاء (الوسيط)", hrsTxt(med), "من لحظة الطلب") + tile("ألغاها الزبون", cu(can.length ? byCust / can.length : 0, "pct", 0), `${byCust} طلب`);
+  $("#x-pay").innerHTML = rateTable(groupTable(list, o => { const g = gateName(o); return { k: g, n: g }; }), "طريقة الدفع");
+  $("#x-src").innerHTML = rateTable(groupTable(list, srcOf), "المصدر");
+  $("#x-cat").innerHTML = rateTable(groupTable(list, o => { const c = catOf(o.li[0] && o.li[0][2]); return { k: c, n: c }; }), "القسم (أول منتج)");
+  const rs = {}; can.forEach(o => { const r = REASON[o.cr] || "بدون سبب"; rs[r] = (rs[r] || 0) + 1; });
+  const bk = [["أقل من ٦ ساعات", h => h < 6], ["٦–٢٤ ساعة", h => h >= 6 && h < 24], ["١–٣ أيام", h => h >= 24 && h < 72], ["أكثر من ٣ أيام", h => h >= 72]].map(([l, f]) => [l, hrs.filter(f).length]);
+  const mx = Math.max(1, ...bk.map(b => b[1])), mr = Math.max(1, ...Object.values(rs));
+  $("#x-why").innerHTML = can.length ? `<div class="blist">${Object.entries(rs).sort((a, b) => b[1] - a[1]).map(([r, n]) => `<div class="row"><div><div class="lab"><span>${esc(r)}</span></div><div class="track"><div class="fill" style="width:${n / mr * 100}%;background:var(--bad)"></div></div></div><span class="val">${n}</span></div>`).join("")}</div><h4 style="font-size:12px;color:var(--muted);font-weight:500;margin:18px 0 10px">المدة قبل الإلغاء</h4><div class="blist">${bk.map(([l, n]) => `<div class="row"><div><div class="lab"><span>${l}</span></div><div class="track"><div class="fill" style="width:${n / mx * 100}%;background:var(--serious)"></div></div></div><span class="val">${n}</span></div>`).join("")}</div>` : `<div class="empty">ما في إلغاءات في هذه الفترة.</div>`;
+}
+
+/* ---------- PRODUCTS ---------- */
+function lineAgg(list, keyFn) { const m = {}; list.forEach(o => { const st = status(o), dead = st === "cancelled" || st === "refunded"; o.li.forEach(l => { const k = keyFn(l); const b = m[k] || (m[k] = { k, u: 0, v: 0, rv: 0, cu: 0, cv: 0, o: new Set() }); b.o.add(o.id); if (dead) { b.cu += l[1]; b.cv += l[3]; } else { const q = l[4] ?? l[1]; if (!q) return; const val = l[1] ? l[3] * q / l[1] : 0; b.u += q; b.v += val; if (st === "delivered") b.rv += val; } }); }); return Object.values(m).map(b => ({ ...b, o: b.o.size })); }
+function renderProducts() {
+  if (!S.d || !S.d.orders) { ["#p-cond", "#p-cat"].forEach(s => need($(s), "orders")); } else {
+    const list = pOrders(), cond = lineAgg(list, l => condOf(l[2])), tot = cond.reduce((s, c) => s + c.v, 0) || 1, cs = ["new", "ob", "used", "na"].map(k => cond.find(c => c.k === k)).filter(Boolean);
+    $("#p-cond").innerHTML = cs.length ? `<div class="split">${cs.filter(c => c.v > 0).map((c, i) => `<span style="flex:${c.v};background:var(${COND[c.k][1]});animation-delay:${i * 80}ms" title="${COND[c.k][0]}: ${pct(c.v / tot, 0)}"></span>`).join("")}</div>
+      <div class="tw"><table><thead><tr><th>الحالة</th><th class="r">قطع</th><th class="r">قيمة</th><th class="r">المستلم</th><th class="r">الحصة</th><th class="r">نسبة الإلغاء</th></tr></thead><tbody>${cs.map(c => { const cr = (c.u + c.cu) ? c.cu / (c.u + c.cu) : 0; return `<tr><td>${condTag(c.k)}</td><td class="r n">${c.u}</td><td class="r n">${money(c.v)}</td><td class="r n">${money(c.rv)}</td><td class="r n">${pct(c.v / tot, 0)}</td><td class="r n rate ${cr >= .5 ? "hi" : ""}">${pct(cr, 0)}</td></tr>`; }).join("")}</tbody></table></div><p class="note">${detailWord()}</p>` : `<div class="empty">لا توجد طلبات.</div>`;
+    const cats = lineAgg(list, l => catOf(l[2])).sort((a, b) => (b.v + b.cv) - (a.v + a.cv)), mx = Math.max(1, ...cats.map(c => c.v));
+    $("#p-cat").innerHTML = cats.length ? `<div class="tw"><table><thead><tr><th>القسم</th><th class="r">طلبات</th><th class="r">قطع</th><th class="r">قيمة</th><th class="r">المستلم</th><th class="r">نسبة الإلغاء</th></tr></thead><tbody>${cats.map(c => { const cr = (c.v + c.cv) ? c.cv / (c.v + c.cv) : 0; return `<tr><td class="inbar"><div class="bar" style="width:${c.v / mx * 100}%"></div><span>${esc(c.k)}</span></td><td class="r n">${c.o}</td><td class="r n">${c.u}</td><td class="r n">${money(c.v)}</td><td class="r n">${money(c.rv)}</td><td class="r n rate ${cr >= .5 ? "hi" : ""}">${pct(cr, 0)}</td></tr>`; }).join("")}</tbody><tfoot><tr><td>المجموع</td><td class="r n">${list.length}</td><td class="r n">${cats.reduce((s, c) => s + c.u, 0)}</td><td class="r n">${money(cats.reduce((s, c) => s + c.v, 0))}</td><td class="r n">${money(cats.reduce((s, c) => s + c.rv, 0))}</td><td></td></tr></tfoot></table></div>` : `<div class="empty">لا توجد طلبات.</div>`;
+  }
+  const pa = $("#p-all"); $("#p-all-sub").textContent = periodWord();
+  if (detailMode()) { if (need(pa, "orders")) { const rows = prodAggOrders(pOrders()); pa.innerHTML = rows.length ? prodTable(rows, 80) : `<div class="empty">لا توجد طلبات في هذه الفترة.</div>`; } }
+  else if (need(pa, "hprod")) { const rows = prodAgg(range()); pa.innerHTML = rows.length ? prodTableQL(rows, 80) : `<div class="empty">لا توجد مبيعات.</div>`; }
+  const pb = $("#p-ab");
+  if (need(pb, "ab")) { const r = detailMode() ? range() : [addDays(today(), -59), today()], m = {};
+    (S.d.ab || []).filter(a => !a.done && inR(dayKey(new Date(a.t)), r)).forEach(a => a.li.forEach(l => { const b = m[l[0]] || (m[l[0]] = { t: l[0], n: 0, v: 0, s: l[2] }); b.n++; b.v += l[3]; }));
+    const rows = Object.values(m).sort((a, b) => b.n - a.n || b.v - a.v).slice(0, 15);
+    pb.innerHTML = rows.length ? `<div class="tw"><table><thead><tr><th>المنتج</th><th>الحالة</th><th class="r">مرّات تُرك</th><th class="r">القيمة</th></tr></thead><tbody>${rows.map(r => `<tr><td><span class="prod ltr" style="display:block;text-align:start">${esc(r.t)}</span></td><td>${condTag(condOf(r.s))}</td><td class="r n">${r.n}</td><td class="r n">${money(r.v)}</td></tr>`).join("")}</tbody></table></div>` : `<div class="empty">لا توجد سلّات متروكة في هذه الفترة.</div>`; }
+}
+
+/* ---------- CUSTOMERS ---------- */
+function renderCustomers() {
+  const ck = $("#ckpis"), r = detailMode() ? range() : [addDays(today(), -59), today()], list = pOrders(), buyers = {};
+  list.forEach(o => { if (!o.cu) return; const b = buyers[o.cu.id] || (buyers[o.cu.id] = { c: o.cu, n: 0, k: 0, v: 0, last: 0, src: srcOf(o).n, city: o.ad && (o.ad.ci || o.ad.pr) }); b.n++; const kv = recv(o); if (kv > 0) { b.k++; b.v += kv; } b.last = Math.max(b.last, Date.parse(o.t)); });
+  const bl = Object.values(buyers), cuL = S.d && S.d.cu || [], nobuy = cuL.filter(c => c.no === 0), repeat = cuL.filter(c => c.no > 1).length;
+  const ab = abOpen().filter(a => inR(dayKey(new Date(a.t)), r)), abC = ab.filter(a => S.contacted[a.id]).length;
+  if (S.d) { const tile = (k, v, d) => `<div class="kpi"><span class="k">${k}</span><span class="v">${v}</span><div class="d"><span>${d}</span></div></div>`;
+    ck.innerHTML = tile("زبائن مسجّلين", S.d.cu ? cu(cuL.length, "int") : "—", "من أول يوم") + tile("استلموا طلبات", cu(bl.filter(b => b.k > 0).length, "int"), detailWord()) + tile("طلبوا أكثر من مرة", S.d.cu ? cu(repeat, "int") : "—", S.d.cu && cuL.length ? pct(repeat / cuL.length, 0) + " من الزبائن" : "") + tile("سجّلوا وما طلبوا", S.d.cu ? cu(nobuy.length, "int") : "—", "من أول يوم") + tile("سلّات متروكة", cu(ab.length, "int"), `${abC} تم التواصل · ${money(ab.reduce((s, a) => s + a.tot, 0))} ج.م`); }
+  else ck.innerHTML = "";
+  $("#tc-ab").textContent = S.d && S.d.ab ? abOpen().filter(a => !S.contacted[a.id]).length || "" : "";
+  const at = $("#atable"), af = $("#afilters");
+  if (need(at, "ab")) {
+    const counts = { open: ab.filter(a => !S.contacted[a.id]).length, done: abC, all: ab.length };
+    af.innerHTML = [["open", "بدون تواصل"], ["done", "تم التواصل"], ["all", "الكل"]].map(([k, l]) => `<button type="button" class="chip" data-af="${k}" aria-pressed="${S.abFilter === k}">${l}<span class="n">${counts[k]}</span></button>`).join("");
+    const rows = ab.filter(a => S.abFilter === "all" || (S.abFilter === "done") === !!S.contacted[a.id]); at._rows = rows;
+    at.innerHTML = rows.length ? `<thead><tr><th>الزبون</th><th>المنتجات</th><th class="r">القيمة</th><th>متى</th><th>تواصل</th><th>رابط السلة</th><th>متابعة</th></tr></thead><tbody>${rows.map((a, i) => { const c = S.contacted[a.id], ph = phoneOf(a.ad && a.ad.ph, a.cu && a.cu.ph);
+      return `<tr><td><div class="cm">${esc(a.cu ? a.cu.nm : "زائر بدون اسم")}</div><div class="cs">${esc(a.ad ? (a.ad.ci || a.ad.pr) : "")}</div></td><td><div class="prod ltr" style="text-align:start">${esc(a.li[0] ? a.li[0][0] : "")}</div>${a.li.length > 1 ? `<div class="cs">و${a.li.length - 1} منتج آخر</div>` : ""}</td><td class="r n nw">${money(a.tot)}</td><td class="nw">${fDayTime.format(new Date(a.t))}</td><td><div class="cs ltr" style="text-align:start">${esc(a.cu && a.cu.em || "")}</div><div class="cs ltr n" style="text-align:start">${esc(ph)}</div></td><td class="nw"><button type="button" class="linkish" data-copy="${i}">نسخ</button> · <a class="linkish" href="${adminCheckout(a.id)}" target="_blank" rel="noopener">Shopify ↗</a></td><td class="nw"><label class="tick ${c ? "done" : ""}"><input type="checkbox" data-mark="${esc(a.id)}" ${c ? "checked" : ""} ${db && S.canMark !== false ? "" : "disabled"}>${c ? "تم التواصل" + (c.via ? " · " + esc(c.via) : "") : "لم يتم"}</label>${c && c.at ? `<div class="cs">${fDay.format(new Date(c.at))}</div>` : ""}</td></tr>`; }).join("")}</tbody><tfoot><tr><td colspan="2">المجموع · ${rows.length} سلّة</td><td class="r n">${money(rows.reduce((s, a) => s + a.tot, 0))}</td><td colspan="4"></td></tr></tfoot>` : `<tbody><tr><td class="empty">${S.abFilter === "open" ? "كل السلّات المتروكة تم التواصل معها." : "لا يوجد شيء هنا."}</td></tr></tbody>`;
+  } else af.innerHTML = "";
+  const bt = $("#btable"); $("#buyers-sub").textContent = detailWord();
+  if (need(bt, "orders")) bt.innerHTML = bl.length ? `<thead><tr><th>الزبون</th><th class="r">طلبات</th><th class="r">المستلم</th><th>آخر طلب</th><th>المصدر</th></tr></thead><tbody>${bl.sort((a, b) => b.v - a.v || b.last - a.last).map(b => `<tr><td><div class="cm">${esc(b.c.nm)}</div><div class="cs">${esc(b.city || "")}${b.c.no > 1 ? " · زبون متكرر" : ""}</div></td><td class="r n">${b.n}${b.n > b.k ? `<div class="cs">${b.n - b.k} مش مستلم</div>` : ""}</td><td class="r n">${b.v ? money(b.v) : "—"}</td><td class="nw">${fDay.format(new Date(b.last))}</td><td class="nw">${esc(b.src)}</td></tr>`).join("")}</tbody><tfoot><tr><td>المجموع · ${bl.length} زبون</td><td class="r n">${bl.reduce((s, b) => s + b.n, 0)}</td><td class="r n">${money(bl.reduce((s, b) => s + b.v, 0))}</td><td colspan="2"></td></tr></tfoot>` : `<tbody><tr><td class="empty">لا يوجد زبائن في هذه الفترة.</td></tr></tbody>`;
+  const pv = $("#provinces");
+  if (need(pv, "orders")) { const by = {}; list.filter(o => recv(o) > 0).forEach(o => { const p = (o.ad && (o.ad.pr || o.ad.ci)) || "غير محدد"; const b = by[p] || (by[p] = { n: 0, v: 0 }); b.n++; b.v += recv(o); }); const rows = Object.entries(by).sort((a, b) => b[1].v - a[1].v).slice(0, 12), mx = Math.max(1, ...rows.map(r => r[1].v));
+    pv.innerHTML = rows.length ? `<div class="blist">${rows.map(([p, b], i) => `<div class="row"><div><div class="lab"><span>${esc(p)}</span><span class="n" style="color:var(--muted)">${b.n} طلب</span></div><div class="track"><div class="fill" style="width:${b.v / mx * 100}%;background:var(--key);animation-delay:${i * 40}ms"></div></div></div><span class="val">${money(b.v)}</span></div>`).join("")}</div>` : `<div class="empty">لا توجد طلبات مستلمة في هذه الفترة.</div>`; }
+  const nt = $("#ntable");
+  if (need(nt, "cu")) { $("#nobuy-sub").textContent = `${nobuy.length} زبون عندهم حساب أو بيانات وما طلبوا · الأحدث أولاً`;
+    const abBy = {}; (S.d.ab || []).forEach(a => { if (a.cu && !a.done) { const x = abBy[a.cu.id]; if (!x || Date.parse(a.t) > Date.parse(x.t)) abBy[a.cu.id] = a; } });
+    nt.innerHTML = nobuy.length ? `<thead><tr><th>الاسم</th><th>تواصل</th><th>المدينة</th><th>سجّل</th><th>آخر سلّة تركها</th></tr></thead><tbody>${nobuy.slice(0, 80).map(c => { const a = abBy[c.id]; return `<tr><td class="cm">${esc(c.nm || "—")}</td><td><div class="cs ltr" style="text-align:start">${esc(c.em)}</div><div class="cs ltr n" style="text-align:start">${esc(c.ph || (a && a.ad && a.ad.ph) || "")}</div></td><td>${esc(c.ci)}</td><td class="nw">${fDay.format(new Date(c.t))}</td><td>${a ? `<div class="prod ltr" style="text-align:start">${esc(a.li[0] ? a.li[0][0] : "")}</div><div class="cs n">${money(a.tot)} ج.م</div>` : '<span class="cs">—</span>'}</td></tr>`; }).join("")}</tbody>` : `<tbody><tr><td class="empty">كل المسجّلين طلبوا.</td></tr></tbody>`; }
+}
+
+/* ---------- TRAFFIC ---------- */
+const SRC_NAME = (s, n) => { const k = (n || "").toLowerCase(); if (s === "direct") return "مباشر"; const M = { google: "Google", chatgpt: "ChatGPT", facebook: "Facebook", instagram: "Instagram", bing: "Bing", claude: "Claude", linkedin: "LinkedIn", brave: "Brave", "yahoo!": "Yahoo" }; if (M[k]) return M[k]; if (!s && !n) return "غير معروف"; return n || s; };
+const SRC_KIND = s => ({ direct: "واتساب أو تطبيق أو رابط مكتوب", search: "محرك بحث", social: "سوشيال ميديا", email: "إيميل", unknown: "مواقع أخرى" })[s] || "";
+function renderTraffic() {
+  const r = range(), g = grain(), ts = $("#sessions");
+  $("#sess-sub").textContent = periodWord() + (g === "month" ? " · حسب الشهر" : g === "week" ? " · حسب الأسبوع" : " · حسب اليوم");
+  if (need(ts, "hdev", true)) { const s = seriesRows(S.d.hdev, r, g, 2), c = seriesRows(S.d.hdev, r, g, 3), k = seriesRows(S.d.hdev, r, g, 4), o = seriesRows(S.d.hdev, r, g, 5);
+    ts.innerHTML = `<div class="chart"></div>`; areaChart(ts.querySelector(".chart"), s.bs.map(b => bLabel(b, g)), s.v, "زيارات", i => `<div class="l"><span>أضافوا للسلة</span><b>${c.v[i]}</b></div><div class="l"><span>وصلوا للدفع</span><b>${k.v[i]}</b></div><div class="l"><span>طلبوا</span><b>${o.v[i]}</b></div>`); }
+  const st = $("#stable");
+  if (need(st, "hsrc")) { const m = {}; S.d.hsrc.forEach(x => { if (!inR(x[0], r)) return; const key = x[1] + "|" + x[2]; const b = m[key] || (m[key] = { s: x[1], n: x[2], v: [0, 0, 0, 0] }); for (let i = 0; i < 4; i++) b.v[i] += x[3 + i]; });
+    const rows = Object.values(m).filter(b => b.v[0] > 0).sort((a, b) => b.v[0] - a.v[0]).slice(0, 15), mx = Math.max(1, ...rows.map(b => b.v[0])), T = [0, 1, 2, 3].map(i => rows.reduce((s, b) => s + b.v[i], 0));
+    st.innerHTML = `<thead><tr><th>المصدر</th><th class="r">زيارات</th><th class="r">أضافوا للسلة</th><th class="r">وصلوا للدفع</th><th class="r">طلبوا</th><th class="r">نسبة الشراء</th></tr></thead><tbody>${rows.map(b => { const cr = b.v[0] ? b.v[3] / b.v[0] : 0; return `<tr><td class="inbar" style="min-width:200px"><div class="bar" style="width:${b.v[0] / mx * 100}%"></div><span><span class="cm">${esc(SRC_NAME(b.s, b.n))}</span> <span class="cs">${SRC_KIND(b.s)}</span></span></td><td class="r n">${nf.format(b.v[0])}</td><td class="r n">${b.v[1] || "—"}</td><td class="r n">${b.v[2] || "—"}</td><td class="r n">${b.v[3] || "—"}</td><td class="r n rate ${cr >= .015 ? "ok" : ""}">${pct(cr, 1)}</td></tr>`; }).join("")}</tbody><tfoot><tr><td>المجموع</td>${T.map(v => `<td class="r n">${nf.format(v)}</td>`).join("")}<td class="r n">${pct(T[0] ? T[3] / T[0] : 0, 2)}</td></tr></tfoot>`; }
+  const pt = $("#ptable"), pages = S.d && S.d.pages && S.d.pages[S.period];
+  if (S.d && pages) { const mx = Math.max(1, ...pages.map(p => p[1]));
+    pt.innerHTML = `<thead><tr><th>الصفحة</th><th class="r">زيارات</th><th class="r">أضافوا للسلة</th><th class="r">طلبوا</th><th class="r">نسبة الإضافة للسلة</th></tr></thead><tbody>${pages.map(p => `<tr><td class="inbar"><div class="bar" style="width:${p[1] / mx * 100}%"></div><span class="ltr" style="font-size:12px;font-family:var(--f-num)">${esc(pathOf("https://x" + p[0]) || "/")}</span></td><td class="r n">${nf.format(p[1])}</td><td class="r n">${p[2] || "—"}</td><td class="r n">${p[3] || "—"}</td><td class="r n">${p[1] ? pct(p[2] / p[1], 1) : "—"}</td></tr>`).join("")}</tbody>`; }
+  else need(pt, "pages");
+  const hm = $("#heat");
+  if (need(hm, "heat")) { const grid = {}; let mx = 1; S.d.heat.forEach(x => { grid[x[0] + "-" + x[1]] = x; mx = Math.max(mx, x[2]); });
+    let h = '<div class="heat"><span></span>' + Array.from({ length: 24 }, (_, i) => `<span class="hl">${i % 3 === 0 ? i : ""}</span>`).join("");
+    DOW_ROWS.forEach((d, ri) => { h += `<span class="dl">${DOW[d]}</span>`; for (let hr = 0; hr < 24; hr++) { const x = grid[d + "-" + hr], v = x ? x[2] : 0; h += `<span class="cell" title="${DOW[d]} · الساعة ${hr}: ${v} زيارة${x && x[3] ? " · " + x[3] + " أضافوا للسلة" : ""}">${v ? `<b style="opacity:${(.12 + .88 * Math.sqrt(v / mx)).toFixed(2)};animation-delay:${(ri * 24 + hr) * 4}ms"></b>` : ""}</span>`; } });
+    hm.innerHTML = h + "</div>"; }
+  const dv = $("#devices");
+  if (need(dv, "hdev")) { const DN = { mobile: "موبايل", desktop: "كمبيوتر", tablet: "تابلت", other: "غير ذلك" }, m = {}; S.d.hdev.forEach(x => { if (!inR(x[0], r)) return; const b = m[x[1]] || (m[x[1]] = [0, 0, 0, 0]); for (let i = 0; i < 4; i++) b[i] += x[2 + i]; });
+    const rows = Object.entries(m).sort((a, b) => b[1][0] - a[1][0]), tot = rows.reduce((s, x) => s + x[1][0], 0) || 1;
+    dv.innerHTML = `<div class="blist">${rows.map(([d, v], i) => `<div class="row"><div><div class="lab"><span>${DN[d] || esc(d)}</span><span class="n" style="color:var(--muted)">${pct(v[0] / tot, 0)} · شراء ${pct(v[0] ? v[3] / v[0] : 0, 1)}</span></div><div class="track"><div class="fill" style="width:${v[0] / tot * 100}%;animation-delay:${i * 60}ms"></div></div></div><span class="val">${nf.format(v[0])}</span></div>`).join("")}</div>`; }
+  const ct = $("#cities"), cities = S.d && S.d.cities && S.d.cities[S.period];
+  if (S.d && cities) { const rows = cities.filter(x => x[1] > 0), mx = Math.max(1, ...rows.map(x => x[1]));
+    ct.innerHTML = `<div class="blist">${rows.map((x, i) => `<div class="row"><div><div class="lab"><span class="ltr" style="text-align:start">${esc(x[0] || "غير معروف")}</span></div><div class="track"><div class="fill" style="width:${x[1] / mx * 100}%;animation-delay:${i * 40}ms"></div></div></div><span class="val">${nf.format(x[1])}</span></div>`).join("")}</div>`; }
+  else need(ct, "cities");
+}
+
+/* ---------- FINANCE (Google Sheets) ---------- */
+const HAS_SHEETS = typeof window.SQ_SHEETS === "function";
+async function loadSheets(fresh) {
+  if (!HAS_SHEETS || S.finLoading) return;
+  S.finLoading = true; if (S.tab === "finance") renderFinance();
+  try { const d = await window.SQ_SHEETS(fresh); if (!d || !d.ok) throw new Error((d && d.error) || "رد غير متوقع"); S.fin = d; S.finErr = null; }
+  catch (e) { S.finErr = (e && e.message) || String(e); }
+  S.finLoading = false; if (S.tab === "finance") { S.anim = true; lastView = null; renderAll(); }
+}
+const PAID_FULL = "تم الدفع والاستلام", CANCEL_S = "ملغي";
+const finOrders = () => (S.fin && S.fin.orders || []).filter(o => !HIDDEN.has(o.n));
+const cashDay = o => (o.collected || o.date || "").slice(0, 10);
+function finMonth(r, m) {
+  const mr = [m, addDays(addMonth(m), -1)], x = { c: 0, n: 0, cost: 0, miss: 0, ex: 0 };
+  finOrders().forEach(o => { const d = cashDay(o); if (o.received > 0 && inR(d, mr) && inR(d, r)) { x.c += o.received; x.n++; if (o.cost == null) x.miss++; else x.cost += o.cost; } });
+  (S.fin.expenses || []).forEach(e => { const d = e.date.slice(0, 10); if (inR(d, mr) && inR(d, r)) x.ex += e.egp; });
+  x.gross = x.c - x.cost; x.net = x.gross - x.ex; return x;
+}
+function renderFinance() {
+  const note = $("#fin-note"), k = $("#fkpis");
+  if (!HAS_SHEETS) { note.innerHTML = ""; return; }
+  if (!S.fin) {
+    k.innerHTML = "";
+    ["#f-chart", "#f-fixed", "#f-cat"].forEach(id => { $(id).innerHTML = S.finErr ? errBox("ما قدرت أجيب جداول Google: " + S.finErr) : loadingBox(); });
+    ["#f-pl", "#f-log", "#f-rec", "#f-wa"].forEach(id => { $(id).innerHTML = ""; });
+    note.innerHTML = S.finErr && /sheetsUrl|404/.test(S.finErr) ? '<div class="banner"><p>ضيف رابط سكربت Google («sheetsUrl») لملف config.json عشان يشتغل هالقسم.</p></div>' : "";
+    return;
+  }
+  const r = range(), list = finOrders(), got = list.filter(o => o.received > 0 && inR(cashDay(o), r));
+  const C = got.reduce((s, o) => s + o.received, 0), miss = got.filter(o => o.cost == null), COST = got.reduce((s, o) => s + (o.cost || 0), 0);
+  const EX = (S.fin.expenses || []).filter(e => inR(e.date.slice(0, 10), r)).reduce((s, e) => s + e.egp, 0);
+  const G = C - COST, N = G - EX, REM = list.filter(o => o.status !== CANCEL_S).reduce((s, o) => s + (o.remaining || 0), 0);
+  const fixed = (S.fin.recurring || []).reduce((s, x) => s + (x.monthly || 0), 0);
+  note.innerHTML = (S.fin.errors && S.fin.errors.length ? '<div class="banner bad"><p>' + esc(S.fin.errors.join(" · ")) + "</p></div>" : "")
+    + (miss.length ? '<div class="banner"><p>' + miss.length + " أوردر محصّل في هالفترة ما إله «تكلفة الشراء» بجدول الطلبات (" + miss.map(o => esc(o.n)).join("، ") + "). الربح المعروض أعلى من الحقيقة لحد ما تنكتب التكلفة.</p></div>" : "");
+  const tile = (kk, v, d, u = "ج.م") => '<div class="kpi"><span class="k">' + kk + '</span><span class="v">' + v + (u ? "<small>" + u + "</small>" : "") + '</span><div class="d">' + (d || "") + "</div></div>";
+  const col = v => '<span style="color:var(' + (v >= 0 ? "--good" : "--bad") + ')">' + cu(v) + "</span>";
+  k.innerHTML = tile("المحصّل فعلياً", cu(C), "<span>" + got.length + " أوردر · " + periodWord() + "</span>")
+    + tile("تكلفة البضاعة", cu(COST), "<span>" + (miss.length ? miss.length + " أوردر بدون تكلفة" : "كل الأوردرات إلها تكلفة") + "</span>")
+    + tile("الربح الإجمالي", col(G), "<span>هامش " + (C ? pct(G / C, 0) : "—") + "</span>")
+    + tile("المصاريف", cu(EX), "<span>من سجل المصاريف</span>")
+    + tile("صافي الربح", col(N), "<span>" + (C ? "هامش صافي " + pct(N / C, 0) : "") + "</span>")
+    + tile("المتبقي في الشارع", cu(REM), "<span>لسه ما اتحصّل · كل الفترات</span>");
+
+  const span = S.period === "all" || S.period === "365" ? r : [addDays(today(), -180), today()];
+  const rows = buckets(span, "month").map(m => Object.assign({ m }, finMonth(span, m))).filter(x => x.c || x.ex);
+  const fc = $("#f-chart");
+  if (rows.length) {
+    fc.innerHTML = '<div class="legend" style="margin-bottom:10px"><span><i class="sw" style="background:var(--key)"></i>المحصّل</span><span><i class="sw" style="background:var(--series-2)"></i>تكلفة البضاعة</span><span><i class="sw" style="background:var(--bad)"></i>المصاريف</span></div><div class="chart"></div>';
+    barChart(fc.querySelector(".chart"), rows.map(x => fMonth.format(kDate(x.m))), [{ name: "المحصّل", v: "--key", values: rows.map(x => x.c) }, { name: "تكلفة البضاعة", v: "--series-2", values: rows.map(x => x.cost) }, { name: "المصاريف", v: "--bad", values: rows.map(x => x.ex) }], "group", v => money(v) + " ج.م", i => '<div class="l"><span>صافي الربح</span><b>' + money(rows[i].net) + "</b></div>");
+  } else fc.innerHTML = '<div class="empty">ما في تحصيل أو مصاريف بهالفترة.</div>';
+
+  const T = key => rows.reduce((s, x) => s + x[key], 0);
+  $("#f-pl").innerHTML = rows.length ? '<thead><tr><th>الشهر</th><th class="r">أوردرات محصّلة</th><th class="r">المحصّل</th><th class="r">تكلفة البضاعة</th><th class="r">الربح الإجمالي</th><th class="r">المصاريف</th><th class="r">صافي الربح</th><th class="r">الهامش</th></tr></thead><tbody>'
+    + rows.slice().reverse().map(x => '<tr><td class="nw cm">' + fMonthL.format(kDate(x.m)) + '</td><td class="r n">' + x.n + (x.miss ? '<div class="cs" style="color:var(--warn)">' + x.miss + " بدون تكلفة</div>" : "") + '</td><td class="r n">' + money(x.c) + '</td><td class="r n">' + money(x.cost) + '</td><td class="r n">' + money(x.gross) + '</td><td class="r n">' + money(x.ex) + '</td><td class="r n rate ' + (x.net < 0 ? "hi" : "ok") + '">' + money(x.net) + '</td><td class="r n">' + (x.c ? pct(x.net / x.c, 0) : "—") + "</td></tr>").join("")
+    + '</tbody><tfoot><tr><td>المجموع</td><td class="r n">' + T("n") + '</td><td class="r n">' + money(T("c")) + '</td><td class="r n">' + money(T("cost")) + '</td><td class="r n">' + money(T("gross")) + '</td><td class="r n">' + money(T("ex")) + '</td><td class="r n">' + money(T("net")) + '</td><td class="r n">' + (T("c") ? pct(T("net") / T("c"), 0) : "—") + "</td></tr></tfoot>"
+    : '<tbody><tr><td class="empty">لا توجد بيانات.</td></tr></tbody>';
+
+  const rec = S.fin.recurring || [], avgEx = rows.length ? T("ex") / rows.length : 0;
+  $("#f-fixed").innerHTML = rec.length ? '<div class="blist">' + rec.map((x, i) => '<div class="row"><div><div class="lab"><span>' + esc(x.name) + '</span><span class="cs">' + esc(x.freq) + '</span></div><div class="track"><div class="fill" style="width:' + (fixed ? x.monthly / fixed * 100 : 0) + "%;animation-delay:" + i * 50 + 'ms"></div></div></div><span class="val">' + money(x.monthly) + "</span></div>").join("")
+    + '</div><div class="tiles"><div><b>' + money(fixed) + '</b><span>ثابت بالشهر</span></div><div><b>' + money(avgEx) + '</b><span>متوسط المدفوع فعلياً</span></div><div class="' + (avgEx > fixed ? "hot" : "") + '"><b>' + (fixed ? pct(avgEx / fixed, 0) : "—") + "</b><span>من المتوقع</span></div></div>"
+    : '<div class="empty">ما في مصاريف دورية.</div>';
+
+  const exP = (S.fin.expenses || []).filter(e => inR(e.date.slice(0, 10), r)), byC = {};
+  exP.forEach(e => { const b = byC[e.category] || (byC[e.category] = { v: 0, n: 0 }); b.v += e.egp; b.n++; });
+  const cats = Object.entries(byC).sort((a, b) => b[1].v - a[1].v), mx = Math.max(1, ...cats.map(c => c[1].v));
+  $("#f-cat-sub").textContent = periodWord() + " · " + exP.length + " عملية";
+  $("#f-cat").innerHTML = cats.length ? '<div class="blist">' + cats.map(([c, b], i) => '<div class="row"><div><div class="lab"><span>' + esc(c) + '</span><span class="cs">' + b.n + " عملية · " + pct(b.v / Math.max(1, EX), 0) + '</span></div><div class="track"><div class="fill" style="width:' + b.v / mx * 100 + "%;background:var(--bad);animation-delay:" + i * 50 + 'ms"></div></div></div><span class="val">' + money(b.v) + "</span></div>").join("") + "</div>" : '<div class="empty">ما في مصاريف مسجّلة بهالفترة.</div>';
+
+  const lg = (S.fin.expenses || []).slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 12);
+  $("#f-log").innerHTML = lg.length ? '<thead><tr><th>التاريخ</th><th>الوصف</th><th>الفئة</th><th class="r">المبلغ</th><th>الدفع</th></tr></thead><tbody>' + lg.map(e => '<tr><td class="nw">' + fDay.format(kDate(e.date.slice(0, 10))) + '</td><td><div class="cm">' + esc(e.desc || "—") + '</div><div class="cs">' + esc(e.vendor) + '</div></td><td class="nw">' + esc(e.category) + '</td><td class="r n">' + money(e.egp) + '</td><td class="nw cs">' + esc(e.method) + "</td></tr>").join("") + "</tbody>" : '<tbody><tr><td class="empty">السجل فاضي.</td></tr></tbody>';
+
+  const sheetBy = {}; list.forEach(o => { sheetBy[o.n] = o; });
+  const shop = allOrders(), shopBy = {}; shop.forEach(o => { shopBy[o.n] = o; });
+  const issues = [];
+  shop.forEach(o => {
+    const sh = sheetBy[o.n], st = status(o);
+    if (!sh) { if (st !== "cancelled") issues.push([o, null, "مش مسجّل بجدول الطلبات", "warn"]); return; }
+    const paidSheet = sh.received > 0;
+    if (st === "cancelled" && paidSheet) issues.push([o, sh, "ملغي بـ Shopify بس الجدول فيه تحصيل", "bad"]);
+    else if (st !== "cancelled" && sh.status === CANCEL_S) issues.push([o, sh, "ملغي بالجدول بس مش ملغي بـ Shopify", "bad"]);
+    else if (sh.status === PAID_FULL && st !== "delivered") issues.push([o, sh, "اتحصّل بالجدول · علّموه Fulfilled بـ Shopify", "warn"]);
+    else if (sh.status === PAID_FULL && unpaid(o)) issues.push([o, sh, "اتحصّل بالجدول · علّموه Paid بـ Shopify", "warn"]);
+    else if (st === "delivered" && !paidSheet) issues.push([o, sh, "اتسلّم بـ Shopify بس ما في تحصيل بالجدول", "warn"]);
+    if (st !== "cancelled" && sh.status !== CANCEL_S && Math.abs((sh.total || 0) - o.cur) > 5) issues.push([o, sh, "المبلغ مختلف: الجدول " + money(sh.total) + " · Shopify " + money(o.cur), "warn"]);
+  });
+  if (FULL) list.forEach(sh => { if (!shopBy[sh.n]) issues.push([null, sh, "بالجدول بس مش موجود بـ Shopify", "warn"]); });
+  $("#f-rec").innerHTML = issues.length ? '<thead><tr><th>الطلب</th><th>بـ Shopify</th><th>بالجدول</th><th>الملاحظة</th><th></th></tr></thead><tbody>'
+    + issues.map(([o, sh, msg, lv]) => '<tr><td class="nw cm n">' + esc((o || sh).n) + '<div class="cs">' + esc(o && o.cu ? o.cu.nm : "") + '</div></td><td class="nw">' + (o ? '<span class="st ' + status(o) + '"><i></i>' + ST_LABEL[status(o)] + "</span>" + (unpaid(o) ? '<div class="cs">الدفع معلّق</div>' : "") : "—") + '</td><td class="nw">' + (sh ? esc(sh.status || "—") + '<div class="cs n">محصّل ' + money(sh.received) + "</div>" : "—") + '</td><td style="color:var(--' + (lv === "bad" ? "bad" : "warn") + ')">' + esc(msg) + '</td><td class="nw">' + (o ? '<a class="linkish" href="' + adminOrder(o.id) + '" target="_blank" rel="noopener">Shopify ↗</a>' : "") + "</td></tr>").join("") + "</tbody>"
+    : '<tbody><tr><td class="empty">Shopify وجدول الطلبات متطابقين.</td></tr></tbody>';
+
+  const wa = S.fin.whatsapp || [];
+  $("#f-wa").innerHTML = wa.length ? '<thead><tr><th>المنتج</th><th>الزبون</th><th class="r">القيمة</th></tr></thead><tbody>' + wa.map(w => "<tr><td>" + esc(w.product) + "</td><td>" + esc(w.name) + '</td><td class="r n">' + money(w.value) + "</td></tr>").join("") + '</tbody><tfoot><tr><td colspan="2">المجموع</td><td class="r n">' + money(wa.reduce((s, w) => s + w.value, 0)) + "</td></tr></tfoot>" : '<tbody><tr><td class="empty">ما في أوردرات واتساب مسجّلة.</td></tr></tbody>';
+}
+
+/* ---------- page ---------- */
+function renderBanner() {
+  const el = $("#banner");
+  if (S.noData && !S.loading && !S.d) el.innerHTML = `<div class="banner"><p>ما في نسخة محفوظة من البيانات بعد. بتتعبّى أول ما يفتح الصفحة صاحب المتجر.</p></div>`;
+  else if (S.liveErr && S.writer && !S.loading) el.innerHTML = `<div class="banner ${S.d ? "" : "bad"}"><p>${esc(errMsg(S.liveErr))}${S.d ? " الأرقام المعروضة من آخر نسخة محفوظة." : ""}</p>${S.liveErr.code === "not_in_manifest" ? '<button class="btn" type="button" data-perm>فتح الأذونات</button>' : ""}</div>`;
+  else if (S.d && S.d.at && Date.now() - S.d.at > 2 * DAY && !S.writer) el.innerHTML = `<div class="banner"><p>آخر تحديث للأرقام ${fAgo(Date.now() - S.d.at)}. بتتحدث لما يفتح الصفحة صاحب المتجر.</p></div>`;
+  else el.innerHTML = "";
+}
+function placeIndicators() {
+  const seg = $("#period"), on = seg.querySelector('[aria-pressed="true"]'), pill = seg.querySelector(".pill");
+  if (on) { pill.style.left = on.offsetLeft + "px"; pill.style.width = on.offsetWidth + "px"; }
+  const tabs = $(".tabs"), a = tabs.querySelector('[aria-current="page"]'), bar = tabs.querySelector(".bar");
+  if (a) { bar.style.left = a.offsetLeft + 14 + "px"; bar.style.width = Math.max(0, a.offsetWidth - 28) + "px"; }
+}
+let lastView = null;
+function renderAll() {
+  $$("#period button").forEach(b => b.setAttribute("aria-pressed", b.dataset.p === S.period));
+  $$(".tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.tab === S.tab ? "page" : "false"));
+  $$("[data-view]").forEach(v => v.hidden = v.dataset.view !== S.tab);
+  $$("#sales-mode button").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === S.salesMode));
+  placeIndicators(); renderBanner();
+  const view = $(`[data-view="${S.tab}"]`), key = S.tab + S.period;
+  if (lastView !== key) { S.anim = true; if (!reduceMotion) { view.classList.remove("enter"); void view.offsetWidth; view.classList.add("enter"); $$(".panel", view).forEach((p, i) => p.style.setProperty("--i", i)); } }
+  lastView = key;
+  if (S.d && S.d.orders) $("#tc-orders").textContent = pOrders().length;
+  const T = { overview: () => { renderHero(); renderKpis(); renderSales(); renderStatus(); renderFunnel(); renderAttention(); renderMonths(); renderProductsTop(); renderOrderSources(); renderPayments(); renderWeekdays(); }, orders: renderOrders, finance: renderFinance, cancel: renderCancel, products: renderProducts, customers: renderCustomers, traffic: renderTraffic };
+  T[S.tab]();
+  countUp(view);
+  if (S.tab !== "customers" && S.d && S.d.ab) $("#tc-ab").textContent = abOpen().filter(a => !S.contacted[a.id]).length || "";
+  if (S.d) S.anim = false;
+}
+const T_OK = ["overview", "finance", "orders", "cancel", "products", "customers", "traffic"];
+function setTab(t) { S.tab = T_OK.includes(t) ? t : "overview"; store.set("sq.tab", S.tab); S.open = null; renderAll(); window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); }
+function toast(msg) { const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2400); }
+
+/* ---------- events ---------- */
+$("#period").addEventListener("click", e => { const b = e.target.closest("button[data-p]"); if (!b || b.dataset.p === S.period) return; S.period = b.dataset.p; store.set("sq.period", S.period); S.open = null; renderAll(); });
+$("#sales-mode").addEventListener("click", e => { const b = e.target.closest("button[data-m]"); if (!b) return; S.salesMode = b.dataset.m; $$("#sales-mode button").forEach(x => x.setAttribute("aria-pressed", x === b)); S.anim = true; renderSales(); S.anim = false; });
+$("#reload").addEventListener("click", () => { fetchLive(true); loadSheets(true); });
+$("#export").addEventListener("click", exportCsv);
+$$(".tabs a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); setTab(a.dataset.tab); try { history.replaceState(null, "", "#" + a.dataset.tab); } catch {} }));
+document.addEventListener("click", async e => {
+  const go = e.target.closest("[data-go]"); if (go) { if (go.dataset.filter) S.filter = go.dataset.filter; setTab(go.dataset.go); return; }
+  const f = e.target.closest("[data-f]"); if (f) { S.filter = f.dataset.f; S.open = null; renderOrders(); return; }
+  const af = e.target.closest("[data-af]"); if (af) { S.abFilter = af.dataset.af; renderCustomers(); return; }
+  const row = e.target.closest("tr.row"); if (row && !e.target.closest("a,button,input,label")) { S.open = S.open === row.dataset.id ? null : row.dataset.id; renderOrders(); return; }
+  const cp = e.target.closest("[data-copy]"); if (cp) { const a = $("#atable")._rows[+cp.dataset.copy]; try { await navigator.clipboard.writeText(a.url); toast("تم نسخ رابط السلة."); } catch { toast("تعذّر النسخ."); } return; }
+  if (e.target.closest("[data-perm]")) { try { const p = await claude.use("permissions"); if (p) await p.manage(); } catch { toast("افتح قائمة أذونات الصفحة من أعلاها."); } }
+});
+document.addEventListener("change", async e => {
+  const cb = e.target.closest("input[data-mark]"); if (!cb || !db) return;
+  const id = cb.dataset.mark, docId = id.split("/").pop(); cb.disabled = true;
+  try { if (cb.checked) { const v = { at: Date.now(), via: "يدوي" }; await db.doc("contacted/" + docId).set({ ...v, gid: id }); S.contacted[id] = v; } else { await db.doc("contacted/" + docId).delete(); delete S.contacted[id]; } }
+  catch (err) { cb.checked = !cb.checked; if (err && err.code === "invalid_argument") { S.canMark = false; toast("صلاحيتك على الصفحة ما بتسمح بالتعليم."); } else toast("تعذّر الحفظ. جرّب مرة ثانية."); }
+  renderCustomers();
+});
+document.addEventListener("keydown", e => { const row = e.target.closest && e.target.closest("tr.row"); if (row && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); row.click(); } });
+document.addEventListener("input", e => { if (e.target.id === "oq") { S.q = e.target.value; renderOrders(); } });
+let rT; new ResizeObserver(() => { clearTimeout(rT); rT = setTimeout(() => { placeIndicators(); if (S.tab === "overview") renderSales(); if (S.tab === "traffic") renderTraffic(); }, 150); }).observe($("main"));
+try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => applyTheme()); } catch {}
+
+/* ---------- boot ---------- */
+if (HAS_SHEETS) { $("#tab-fin").hidden = false; loadSheets(false); }
+if (FULL) { $("#foot-1").textContent = "البيانات مباشرة من Shopify. علامات «تم التواصل» محفوظة على هذا الجهاز فقط."; $("#foot-2").textContent = "كل الطلبات من أول يوم."; }
+const h0 = (location.hash || "").slice(1);
+S.tab = T_OK.includes(h0) ? h0 : (T_OK.includes(store.get("sq.tab")) ? store.get("sq.tab") : "overview");
+renderAll();
+(async () => {
+  const has = window.claude && window.claude.use;
+  [db, user, downloads] = has ? await Promise.all([claude.use("db"), claude.use("user"), claude.use("downloads")]) : [null, null, null];
+  if (user) { try { S.writer = !!(await user.canEdit()) || !!(await user.isOwner()); } catch {} const w = await user.can("data.write").catch(() => null); if (w === false) S.canMark = false; }
+  if (db) {
+    db.collection("snap").onSnapshot(onSnap, () => { if (!S.d) { S.noData = true; renderAll(); } });
+    db.collection("contacted").onSnapshot(qs => { const m = {}; qs.docs.forEach(d => { const b = d.data(); if (b && b.gid) m[b.gid] = b; }); S.contacted = m; if (S.tab === "customers" || S.tab === "overview") renderAll(); }, () => {});
+  } else S.noData = true;
+  if (S.writer && has) { mcp = await claude.use("mcp"); if (mcp) { setFresh(); await sleep(1200); if (!S.d || !S.d.at || Date.now() - S.d.at > STALE_MS || FULL) fetchLive(false); } }
+  setFresh(); renderAll();
+})();
+})();
+</script>
+</body></html>
